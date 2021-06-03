@@ -18,5 +18,14 @@
         android:id="@+id/addRecipeIngredientsFragment"
         android:name="android.com.fellowchef.AddRecipeIngredientsFragment"
         android:label="fragment_add_recipe_ingredients"
-        tools:layout="@layout/fragment_add_recipe_ingredients" />
+        tools:layout="@layout/fragment_add_recipe_ingredients" >
+        <action
+            android:id="@+id/action_addRecipeIngredientsFragment_to_addRecipeInstructionsFragment"
+            app:destination="@id/addRecipeInstructionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRecipeInstructionsFragment"
+        android:name="android.com.fellowchef.AddRecipeInstructionsFragment"
+        android:label="fragment_add_recipe_instructions"
+        tools:layout="@layout/fragment_add_recipe_instructions" />
 </navigation>
