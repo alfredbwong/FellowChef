@@ -10,4 +10,9 @@
         android:name="android.com.fellowchef.AddRecipeDetailFragment"
         android:label="fragment_add_recipe_detail"
         tools:layout="@layout/fragment_add_recipe_detail" />
+    <fragment
+        android:id="@+id/addRecipeIngredientsFragment"
+        android:name="android.com.fellowchef.AddRecipeIngredientsFragment"
+        android:label="fragment_add_recipe_ingredients"
+        tools:layout="@layout/fragment_add_recipe_ingredients" />
 </navigation>

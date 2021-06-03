@@ -8,4 +8,15 @@
     <string name="content_desc_image_default">An image that is displayed</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank frasdfsdfgment</string>
+    <string name="hint_recipe_name">Enter the Recipe Name</string>
+    <string name="label_recipe_name">Recipe Name:</string>
+    <string name="label_recipe_type">Recipe Type:</string>
+    <string name="radio_button_breakfast">Breakfast</string>
+    <string name="radio_button_brunch">Brunch</string>
+    <string name="radio_button_lunch">Lunch</string>
+    <string name="radio_button_dinner">Dinner</string>
+    <string name="radio_button_snack">Snack</string>
+    <string name="label_recipe_ingredients">What are the ingredients used for your recipe?</string>
+    <string name="button_add_ingredient">Add Ingredient</string>
+    <string name="button_next">Next</string>
 </resources>
