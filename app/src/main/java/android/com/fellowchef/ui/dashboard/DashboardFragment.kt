@@ -1,5 +1,6 @@
 package android.com.fellowchef.ui.dashboard
 
+import android.com.fellowchef.AddRecipeActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.com.fellowchef.R
+import android.com.fellowchef.databinding.FragmentDashboardBinding
+import android.content.Intent
 
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var binding: FragmentDashboardBinding
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -21,11 +25,18 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
                 ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        val textView: TextView = binding.textDashboard
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
-        return root
+        binding.myRecipeButton.setOnClickListener{
+            val intent = Intent(requireActivity(), AddRecipeActivity::class.java ).apply{
+                //any extras?
+            }
+            startActivity(intent)
+        }
+        return binding.root
     }
 }

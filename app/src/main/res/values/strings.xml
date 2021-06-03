@@ -6,4 +6,6 @@
     <string name="recipe_item_title_proxy">Recipe Title</string>
     <string name="recipe_short_description_proxy">Short Recipe Description</string>
     <string name="content_desc_image_default">An image that is displayed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank frasdfsdfgment</string>
 </resources>
