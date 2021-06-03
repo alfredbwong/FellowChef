@@ -7,4 +7,5 @@
     <dimen name="padding_default">8dp</dimen>
     <dimen name="dashboard_item_mobile_img_height">200dp</dimen>
     <dimen name="margin_bottom_fragment">125dp</dimen>
+    <dimen name="ingredient_list_margin">24dp</dimen>
 </resources>

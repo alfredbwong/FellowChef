@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="measurement_sizes_array">
+        <item>cups</item>
+        <item>tbsp(s)</item>
+        <item>tsp(s)</item>
+        <item>oz</item>
+        <item>kg(s)</item>
+        <item>pound(s)</item>
+        <item>mL</item>
+        <item>L</item>
+    </string-array>
+</resources>

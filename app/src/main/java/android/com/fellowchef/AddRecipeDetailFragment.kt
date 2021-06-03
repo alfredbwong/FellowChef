@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
 
 /**
@@ -20,6 +21,12 @@ class AddRecipeDetailFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = FragmentAddRecipeDetailBinding.inflate(inflater, container, false)
 
+        binding.buttonNext.setOnClickListener{
+            val navController = findNavController()
+            val action = AddRecipeDetailFragmentDirections.actionAddRecipeDetailFragmentToAddRecipeIngredientsFragment()
+
+            navController.navigate(action)
+        }
         return binding.root
     }
 

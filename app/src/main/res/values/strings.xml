@@ -19,4 +19,6 @@
     <string name="label_recipe_ingredients">What are the ingredients used for your recipe?</string>
     <string name="button_add_ingredient">Add Ingredient</string>
     <string name="button_next">Next</string>
+    <string name="input_text_ingredient">Ingredient Name</string>
+    <string name="button_add_ingredient">Add Ingredient</string>
 </resources>

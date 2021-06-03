@@ -9,7 +9,11 @@
         android:id="@+id/addRecipeDetailFragment"
         android:name="android.com.fellowchef.AddRecipeDetailFragment"
         android:label="fragment_add_recipe_detail"
-        tools:layout="@layout/fragment_add_recipe_detail" />
+        tools:layout="@layout/fragment_add_recipe_detail" >
+        <action
+            android:id="@+id/action_addRecipeDetailFragment_to_addRecipeIngredientsFragment"
+            app:destination="@id/addRecipeIngredientsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addRecipeIngredientsFragment"
         android:name="android.com.fellowchef.AddRecipeIngredientsFragment"
