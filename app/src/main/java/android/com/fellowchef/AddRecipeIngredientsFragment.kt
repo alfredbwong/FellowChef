@@ -2,11 +2,13 @@ package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentAddRecipeIngredientsBinding
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 
 
 /**
@@ -25,6 +27,14 @@ class AddRecipeIngredientsFragment : Fragment() {
         ).apply {
             this.setDropDownViewResource((android.R.layout.simple_spinner_dropdown_item))
             spinner.adapter = this
+        }
+        binding.buttonAddIngredientNext.setOnClickListener{
+            val action = AddRecipeIngredientsFragmentDirections.actionAddRecipeIngredientsFragmentToAddRecipeInstructionsFragment()
+            findNavController().navigate(action)
+        }
+        binding.buttonAddIngredient.setOnClickListener{
+            Log.i(TAG, "Clicked to add a ingredient...")
+            
         }
         return binding.root
     }
