@@ -6,7 +6,7 @@ import dagger.Component
 
 
 @Component
-interface AppComponent {
+interface AddRecipeComponent {
     fun inject(activity: AddRecipeActivity)
     fun inject(fragment: AddRecipeDetailFragment)
 }

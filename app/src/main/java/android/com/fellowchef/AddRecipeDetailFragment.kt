@@ -45,7 +45,7 @@ class AddRecipeDetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as FellowChefApplication).appComponent.inject(this)
+        (requireActivity() as AddRecipeActivity).addRecipeComponent.inject(this)
     }
 
     companion object {
