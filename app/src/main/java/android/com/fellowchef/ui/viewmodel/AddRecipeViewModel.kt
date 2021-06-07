@@ -1,8 +1,10 @@
 package android.com.fellowchef.ui.viewmodel
 
+import android.com.fellowchef.di.AddRecipeActivityScope
 import android.com.fellowchef.ui.recipe.Recipe
 import javax.inject.Inject
 
+@AddRecipeActivityScope
 class AddRecipeViewModel @Inject constructor(){
 
     val testString = "Alfred is here"

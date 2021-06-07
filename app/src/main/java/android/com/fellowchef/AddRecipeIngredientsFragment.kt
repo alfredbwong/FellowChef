@@ -1,6 +1,8 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentAddRecipeIngredientsBinding
+import android.com.fellowchef.ui.viewmodel.AddRecipeViewModel
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import javax.inject.Inject
 
 
 /**
@@ -18,6 +21,10 @@ import androidx.navigation.fragment.findNavController
  */
 class AddRecipeIngredientsFragment : Fragment() {
     private lateinit var binding: FragmentAddRecipeIngredientsBinding
+
+    @Inject
+    lateinit var addRecipeViewModel: AddRecipeViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentAddRecipeIngredientsBinding.inflate(inflater, container ,false)
@@ -37,6 +44,11 @@ class AddRecipeIngredientsFragment : Fragment() {
             
         }
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as AddRecipeActivity).addRecipeComponent.inject(this)
     }
 
     companion object {

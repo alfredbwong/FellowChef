@@ -45,7 +45,8 @@ class AddRecipeDetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity() as AddRecipeActivity).addRecipeComponent.inject(this)
+        //Use Dagger to inject this fragment
+        (activity as AddRecipeActivity).addRecipeComponent.inject(this)
     }
 
     companion object {
