@@ -44,7 +44,7 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/inputAddIngredientName"
             app:layout_constraintEnd_toEndOf="@+id/add_recipe_ingredient_label"
             app:layout_constraintHorizontal_bias="0.17"
             app:layout_constraintStart_toStartOf="@+id/add_recipe_ingredient_label"
@@ -59,7 +59,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/inputAddIngredientName" />
 
         <Spinner
             android:id="@+id/spinner_measurement_sizes"
@@ -73,21 +73,21 @@
             app:layout_constraintStart_toEndOf="@+id/number_input_ingredient"
             app:layout_constraintTop_toTopOf="@+id/number_input_ingredient" />
 
-        <LinearLayout
-            android:id="@+id/layoutIngredientList"
+        <ListView
+            android:id="@+id/listViewIngredients"
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_margin="@dimen/ingredient_list_margin"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_default"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/button_add_ingredient_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonAddIngredient"></LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/buttonAddIngredient"
+            app:layout_constraintVertical_bias="0.060000002" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/inputAddIngredientName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -98,8 +98,9 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/button_add_ingredient_next"
             app:layout_constraintEnd_toEndOf="@+id/add_recipe_ingredient_label"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="@+id/add_recipe_ingredient_label"
             app:layout_constraintTop_toBottomOf="@+id/add_recipe_ingredient_label"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintVertical_bias="0.171" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
