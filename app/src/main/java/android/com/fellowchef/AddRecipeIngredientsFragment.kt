@@ -9,6 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -47,15 +50,23 @@ class AddRecipeIngredientsFragment : Fragment() {
         binding.listViewIngredients.adapter = adapterListIngredients
 
         binding.buttonAddIngredientNext.setOnClickListener{
-            val action = AddRecipeIngredientsFragmentDirections.actionAddRecipeIngredientsFragmentToAddRecipeInstructionsFragment()
-            findNavController().navigate(action)
+            if (binding.listViewIngredients.isNotEmpty()) {
+                val action = AddRecipeIngredientsFragmentDirections.actionAddRecipeIngredientsFragmentToAddRecipeInstructionsFragment()
+                findNavController().navigate(action)
+            } else {
+                Toast.makeText(requireContext(), "You must add at least 1 ingredient to the recipe!", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.buttonAddIngredient.setOnClickListener{
-            val number = binding.numberInputIngredient.text.toString()
-            val measurementSize = binding.spinnerMeasurementSizes.selectedItem.toString()
-            val ingredient = binding.inputAddIngredientName.text.toString()
-            addRecipeViewModel.addIngredientToRecipeList(number, measurementSize, ingredient)
-            adapterListIngredients?.notifyDataSetChanged()
+            if (binding.inputAddIngredientName.text.isNotBlank() && binding.numberInputIngredient.text.isNotBlank()) {
+                val number = binding.numberInputIngredient.text.toString()
+                val measurementSize = binding.spinnerMeasurementSizes.selectedItem.toString()
+                val ingredient = binding.inputAddIngredientName.text.toString()
+                addRecipeViewModel.addIngredientToRecipeList(number, measurementSize, ingredient)
+                adapterListIngredients?.notifyDataSetChanged()
+            } else {
+                Toast.makeText(requireContext(), "You need to fill in all fields!", Toast.LENGTH_SHORT).show()
+            }
 
         }
         addRecipeViewModel.recipeIngredientList.observe(viewLifecycleOwner, Observer {

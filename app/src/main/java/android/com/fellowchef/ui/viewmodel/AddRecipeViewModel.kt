@@ -26,6 +26,21 @@ class AddRecipeViewModel @Inject constructor(){
 
     }
 
+    fun addInstructionToList(instruction: String) {
+        _recipeInstructionsList.value?.add(instruction)
+        _recipeInstructionsList.value = _recipeInstructionsList.value
+    }
+
+    fun removeInstruction(position: Int) {
+        _recipeInstructionsList.value?.removeAt(position)
+        _recipeInstructionsList.value = _recipeInstructionsList.value
+    }
+
+
+    private var _recipeInstructionsList = MutableLiveData<MutableList<String>>()
+    val recipeInstructionsList :LiveData<MutableList<String>>
+        get() = _recipeInstructionsList
+
     private var _recipeIngredientList = MutableLiveData<MutableList<String>>()
     val recipeIngredientList : LiveData<MutableList<String>>
         get() = _recipeIngredientList
@@ -40,6 +55,7 @@ class AddRecipeViewModel @Inject constructor(){
 
     init{
         _recipeIngredientList.value = mutableListOf()
+        _recipeInstructionsList.value = mutableListOf()
     }
 
 

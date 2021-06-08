@@ -24,4 +24,6 @@
     <string name="add_instruction_button">+</string>
     <string name="hint_instruction_step">Instruction</string>
     <string name="minus_symbol">-</string>
+    <string name="button_add_instruction">Add Instruction</string>
+    <string name="hint_add_instruction">Add a instruction step</string>
 </resources>
