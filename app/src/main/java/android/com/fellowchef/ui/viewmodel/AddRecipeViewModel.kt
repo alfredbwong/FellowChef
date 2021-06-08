@@ -16,6 +16,14 @@ class AddRecipeViewModel @Inject constructor(){
     fun addIngredientToRecipeList(number: String, measurementSize: String, ingredient: String) {
         val text = "$number $measurementSize $ingredient"
         _recipeIngredientList.value?.add(text)
+        _recipeIngredientList.value = _recipeIngredientList.value
+    }
+
+    fun removeIngredientItem(pos: Int) {
+        _recipeIngredientList.value?.removeAt(pos)
+        _recipeIngredientList.value = _recipeIngredientList.value
+
+
     }
 
     private var _recipeIngredientList = MutableLiveData<MutableList<String>>()

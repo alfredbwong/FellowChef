@@ -5,12 +5,11 @@ import android.com.fellowchef.ui.IngredientListAdapter
 import android.com.fellowchef.ui.viewmodel.AddRecipeViewModel
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import javax.inject.Inject
@@ -41,7 +40,9 @@ class AddRecipeIngredientsFragment : Fragment() {
         //Adapter for list of Ingredients
         val adapterListIngredients = addRecipeViewModel.recipeIngredientList.value?.let {
             listOfIngredients ->
-            IngredientListAdapter(listOfIngredients, requireContext())
+            IngredientListAdapter(listOfIngredients, requireContext()) { pos ->
+                addRecipeViewModel.removeIngredientItem(pos)
+            }
         }
         binding.listViewIngredients.adapter = adapterListIngredients
 
@@ -53,11 +54,14 @@ class AddRecipeIngredientsFragment : Fragment() {
             val number = binding.numberInputIngredient.text.toString()
             val measurementSize = binding.spinnerMeasurementSizes.selectedItem.toString()
             val ingredient = binding.inputAddIngredientName.text.toString()
-            Log.d(TAG, "Clicked to add a ingredient... [$number $measurementSize $ingredient]")
             addRecipeViewModel.addIngredientToRecipeList(number, measurementSize, ingredient)
             adapterListIngredients?.notifyDataSetChanged()
 
         }
+        addRecipeViewModel.recipeIngredientList.observe(viewLifecycleOwner, Observer {
+            listOfIngredients ->
+            adapterListIngredients?.notifyDataSetChanged()
+        })
 
         return binding.root
     }

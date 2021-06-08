@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 
-class IngredientListAdapter(val listOfIngredients : MutableList<String>, val context : Context) : BaseAdapter(){
+class IngredientListAdapter(val listOfIngredients : MutableList<String>, val context : Context, private val itemClick: (pos: Int) -> Unit) : BaseAdapter(){
     override fun getCount(): Int {
         return listOfIngredients.size
     }
@@ -23,6 +23,9 @@ class IngredientListAdapter(val listOfIngredients : MutableList<String>, val con
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val binding = RecipeIngredientItemBinding.inflate(LayoutInflater.from(context), parent, false)
         binding.ingredientItemText.text = listOfIngredients[position]
+        binding.removeIngredientButton.setOnClickListener {
+            itemClick.invoke(position)
+        }
         return binding.root
     }
 
