@@ -29,8 +29,8 @@ class AddRecipeDetailFragment : Fragment() {
             val recipeTitleInputted = binding.recipeNameInput.text.toString()
             val recipeTypeChecked = binding.recipeTypeRadioGroup.checkedRadioButtonId != -1
             if (recipeTitleInputted.isNotEmpty() && recipeTypeChecked) {
-                addRecipeViewModel.recipe.title = binding.recipeNameInput.text.toString()
-                addRecipeViewModel.recipe.recipeType = resources.getResourceEntryName(binding.recipeTypeRadioGroup.checkedRadioButtonId)
+
+                addRecipeViewModel.updateAddRecipeNameAndType(binding.recipeNameInput.text.toString(), resources.getResourceEntryName(binding.recipeTypeRadioGroup.checkedRadioButtonId))
 
                 //Redirect
                 val navController = findNavController()
