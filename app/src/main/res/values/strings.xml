@@ -18,12 +18,11 @@
     <string name="button_add_ingredient">Add Ingredient</string>
     <string name="button_next">Next</string>
     <string name="input_text_ingredient">Ingredient Name</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_add_instructions">Add Instructions to Make the Recipe</string>
     <string name="add_instruction_button">+</string>
     <string name="hint_instruction_step">Instruction</string>
     <string name="minus_symbol">-</string>
     <string name="button_add_instruction">Add Instruction</string>
     <string name="hint_add_instruction">Add a instruction step</string>
+    <string name="trending_text">Trending</string>
 </resources>

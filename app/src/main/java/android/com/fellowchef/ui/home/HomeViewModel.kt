@@ -24,11 +24,17 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun addTestRecipe(){
-        val recipe1 = Recipe(1,"TestRecipe1", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton")
+        val recipe1 = Recipe(1,"TestRecipe1", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton", "Long Descipriton", "ingredient1", "instruction1")
         recipeList.add(recipe1)
-        val recipe2 = Recipe(2, "TestRecipe2", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png","test", "Small Descipriton")
+        val recipe2 = Recipe(2, "TestRecipe2", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png","test", "Small Descipriton","Long Descipriton","ingredient2", "instruction1")
         recipeList.add(recipe2)
-        val recipe3 = Recipe(3, "TestRecipe3", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton")
+        val recipe3 = Recipe(3, "TestRecipe3", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient3", "instruction1")
         recipeList.add(recipe3)
+        val recipe4 = Recipe(4, "TestRecipe4", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        recipeList.add(recipe4)
+        val recipe5 = Recipe(5, "TestRecipe5", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        recipeList.add(recipe5)
+        val recipe6 = Recipe(6, "TestRecipe6", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        recipeList.add(recipe6)
     }
 }

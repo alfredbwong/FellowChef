@@ -12,7 +12,9 @@ import android.com.fellowchef.R
 import android.com.fellowchef.databinding.FragmentHomeBinding
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.ui.recipe.RecipeAdapter
+import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 
 class HomeFragment : Fragment() {
 
@@ -27,18 +29,13 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        val adapter = RecipeAdapter{
-
-            Toast.makeText(this.requireContext(), "You have clicked me", Toast.LENGTH_SHORT).show()
-        }
-        binding.recyclerViewHome.adapter = adapter
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer {
-            recipeList -> adapter.submitList(recipeList)
+            recipeList ->
+                binding.testSection1.refreshList(recipeList)
         })
-
         return binding.root
     }
 
