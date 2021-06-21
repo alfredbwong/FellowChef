@@ -10,6 +10,8 @@ buildscript {
     ext.androidxJunitVersion='1.1.2'
     ext.coroutines='1.3.9'
     ext.roomVersion='2.2.5'
+    ext.version_retrofit='2.7.1'
+    ext.okHttpVersion='4.9.0'
 
     repositories {
         google()

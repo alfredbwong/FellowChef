@@ -32,9 +32,16 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
+        //Test response string
+        homeViewModel.response.observe(viewLifecycleOwner, Observer {
+            responseString ->
+            binding.responseText.text = responseString
+        })
+
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer {
             recipeList ->
                 binding.testSection1.refreshList(recipeList)
+                binding.testSection2.refreshList(recipeList)
         })
         return binding.root
     }
