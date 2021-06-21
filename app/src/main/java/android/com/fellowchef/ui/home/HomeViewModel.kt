@@ -34,30 +34,35 @@ class HomeViewModel : ViewModel() {
     }
 
     private fun addTestRecipe(){
-        val recipe1 = Recipe(1,"TestRecipe1", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton", "Long Descipriton", "ingredient1", "instruction1")
+        val recipe1 = Recipe(1,"TestRecipe1", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", arrayListOf("test"),"Small Descipriton", "Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe1)
-        val recipe2 = Recipe(2, "TestRecipe2", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png","test", "Small Descipriton","Long Descipriton","ingredient2", "instruction1")
+        val recipe2 = Recipe(2, "TestRecipe2", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png",arrayListOf("test"), "Small Descipriton","Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe2)
-        val recipe3 = Recipe(3, "TestRecipe3", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient3", "instruction1")
+        val recipe3 = Recipe(3, "TestRecipe3", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", arrayListOf("test"),"Small Descipriton","Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe3)
-        val recipe4 = Recipe(4, "TestRecipe4", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        val recipe4 = Recipe(4, "TestRecipe4", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", arrayListOf("test"),"Small Descipriton","Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe4)
-        val recipe5 = Recipe(5, "TestRecipe5", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        val recipe5 = Recipe(5, "TestRecipe5", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", arrayListOf("test"),"Small Descipriton","Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe5)
-        val recipe6 = Recipe(6, "TestRecipe6", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", "test","Small Descipriton","Long Descipriton","ingredient4", "instruction1")
+        val recipe6 = Recipe(6, "TestRecipe6", "https://upload.wikimedia.org/wikipedia/en/thumb/a/a6/Pok%C3%A9mon_Pikachu_art.png/220px-Pok%C3%A9mon_Pikachu_art.png", arrayListOf("test"),"Small Descipriton","Long Descipriton", arrayListOf("ingredient1", "ingredient2"), arrayListOf("instruction1", "instruction2"))
         recipeList.add(recipe6)
     }
 
     private fun getRecipes(){
         FellowChefRecipeApi.retrofitService.getRecipes().enqueue(
-            object: Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    _response.value = response.body()
+            object: Callback<List<Recipe>> {
+                override fun onResponse(
+                    call: Call<List<Recipe>>,
+                    response: Response<List<Recipe>>
+                ) {
+                    _response.value =
+                        "Success: ${response.body()?.size} Recipe retrieved"
                 }
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    _response.value = "Failure" + t.message
+                override fun onFailure(call: Call<List<Recipe>>, t: Throwable) {
+                    _response.value = t.message
                 }
+
             }
         )
     }
