@@ -38,10 +38,9 @@ class HomeFragment : Fragment() {
             binding.responseText.text = responseString
         })
 
-        homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer {
+        homeViewModel.listOfRecipesBreakfast.observe(viewLifecycleOwner, Observer {
             recipeList ->
                 binding.testSection1.refreshList(recipeList)
-                binding.testSection2.refreshList(recipeList)
         })
         return binding.root
     }
