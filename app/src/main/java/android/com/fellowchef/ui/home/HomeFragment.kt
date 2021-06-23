@@ -1,5 +1,8 @@
 package android.com.fellowchef.ui.home
 
+import android.com.fellowchef.AddRecipeActivity
+import android.com.fellowchef.FellowChefApplication
+import android.com.fellowchef.MainActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,16 +13,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.com.fellowchef.R
 import android.com.fellowchef.databinding.FragmentHomeBinding
+import android.com.fellowchef.di.HomeRecipeComponent
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.ui.recipe.RecipeAdapter
+import android.com.fellowchef.ui.viewmodel.AddRecipeViewModel
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
+
+    @Inject
+    lateinit var homeViewModel : HomeViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -27,20 +36,16 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
-
-        homeViewModel.listOfRecipesBreakfast.observe(viewLifecycleOwner, Observer {
-            recipeList ->
+        homeViewModel.listOfRecipesBreakfast.observe(viewLifecycleOwner, Observer { recipeList ->
             Log.i(TAG, "recipeList: $recipeList")
-                binding.trendingSection.refreshList(recipeList)
+            binding.trendingSection.refreshList(recipeList)
         })
-        homeViewModel.isShowToast.observe(viewLifecycleOwner, Observer {
-            isShowToast ->
-            if (isShowToast){
+        homeViewModel.isShowToast.observe(viewLifecycleOwner, Observer { isShowToast ->
+            if (isShowToast) {
 //                Toast.makeText(requireContext(), homeViewModel.toastErrorMessage.value, Toast.LENGTH_SHORT).show()
                 homeViewModel.clearToast()
             }
@@ -48,7 +53,13 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    companion object{
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        //Use Dagger to inject this fragment
+        (activity as MainActivity).homeRecipeComponent.inject(this)
+    }
+
+    companion object {
         const val TAG = "HomeFragment"
     }
 }

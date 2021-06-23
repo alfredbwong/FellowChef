@@ -1,15 +1,19 @@
 package android.com.fellowchef.ui.recipe
 
 import android.com.fellowchef.models.Ingredients
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 @Entity(tableName="recipe_table")
 @JsonClass(generateAdapter = true)
-data class Recipe(
+@Parcelize
+data class Recipe (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name="title")
@@ -30,6 +34,6 @@ data class Recipe(
     val instructions : List<String>,
     @ColumnInfo(name="ingredients")
     val ingredients : List<Ingredients>,
-) {
+) :Parcelable{
 
 }

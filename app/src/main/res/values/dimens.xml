@@ -9,4 +9,5 @@
     <dimen name="margin_bottom_fragment">125dp</dimen>
     <dimen name="ingredient_list_margin">24dp</dimen>
     <dimen name="home_section_text">18sp</dimen>
+    <dimen name="default_layout_component_spacing_small">16dp</dimen>
 </resources>

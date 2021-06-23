@@ -1,5 +1,8 @@
 package android.com.fellowchef
 
+import android.com.fellowchef.di.AddRecipeComponent
+import android.com.fellowchef.di.HomeRecipeComponent
+import android.com.fellowchef.ui.home.HomeViewModel
 import android.com.fellowchef.ui.viewmodel.MainViewModel
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -13,11 +16,18 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var mainViewModel: MainViewModel
+    lateinit var homeViewModel: HomeViewModel
+
+    lateinit var homeRecipeComponent: HomeRecipeComponent
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Use Dagger to inject dependencies
-        (application as FellowChefApplication).appComponent.inject(this)
+
+        homeRecipeComponent = (applicationContext as FellowChefApplication).appComponent.homeRecipeComponent().create()
+        homeRecipeComponent.inject(this)
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

@@ -16,7 +16,7 @@ interface AppComponent {
     }
 
     fun addRecipeComponent(): AddRecipeComponent.Factory
+    fun homeRecipeComponent(): HomeRecipeComponent.Factory
 
-    fun inject(activity: MainActivity)
 
 }
