@@ -36,12 +36,12 @@ class HomeViewModel : BaseViewModel() {
     private fun getRecipes(){
         viewModelScope.launch{
             try{
-                Log.i("ViewModel", "Get Recipess.....")
+                Log.d("HomeViewModel", "Get Recipes.....")
                 val recipeList = FellowChefRecipeApi.retrofitService.getRecipes()
-                Log.i("ViewModel", "$recipeList")
+                Log.d("HomeViewModel", "Recipe list retrieved : $recipeList")
                 _listOfRecipesBreakfast.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.LUNCH))
             }catch(e: Exception){
-                Log.i("ViewModel", "${e.message}")
+                Log.d("HomeViewModel", "Error: ${e.message}")
 
                 isShowToast.value = true
                 toastErrorMessage.value = "Could not get recipes : ${e.message}"
