@@ -34,6 +34,15 @@ data class Recipe (
     val instructions : List<String>,
     @ColumnInfo(name="ingredients")
     val ingredients : List<Ingredients>,
+    @ColumnInfo(name="numServings")
+    @Json(name="num_servings")
+    val numServings : Float,
+    @ColumnInfo(name="numLikes")
+    @Json(name="num_likes")
+    val numLikes: Int,
+    @ColumnInfo(name="numDislikes")
+    @Json(name="num_dislikes")
+    val numDislikes: Int,
 ) :Parcelable{
 
 }

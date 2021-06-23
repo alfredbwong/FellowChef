@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Ingredients(
         val name: String,
-        val amount: Integer
+        val size: String,
+        val amount: Float
 ) :Parcelable{
 }

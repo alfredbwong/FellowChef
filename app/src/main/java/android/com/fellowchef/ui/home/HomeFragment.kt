@@ -46,7 +46,6 @@ class HomeFragment : Fragment() {
         })
         homeViewModel.isShowToast.observe(viewLifecycleOwner, Observer { isShowToast ->
             if (isShowToast) {
-//                Toast.makeText(requireContext(), homeViewModel.toastErrorMessage.value, Toast.LENGTH_SHORT).show()
                 homeViewModel.clearToast()
             }
         })
