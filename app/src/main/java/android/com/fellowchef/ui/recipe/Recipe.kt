@@ -1,5 +1,6 @@
 package android.com.fellowchef.ui.recipe
 
+import android.com.fellowchef.models.Ingredients
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,21 +15,21 @@ data class Recipe(
     @ColumnInfo(name="title")
     val title: String,
     @ColumnInfo(name="imageUrl")
-    @Json(name="imageurl")
+    @Json(name="image_url")
     val imageUrl: String,
-    @ColumnInfo(name="recipeType")
-    @Json(name="recipetype")
+    @ColumnInfo(name="tags")
+    @Json(name="tags")
     val recipeType : List<String>,
     @ColumnInfo(name="shortDescription")
-    @Json(name="shortdescription")
+    @Json(name="short_description")
     val shortDescription: String,
     @ColumnInfo(name="longDescription")
-    @Json(name="longdescription")
+    @Json(name="long_description")
     val longDescription: String,
     @ColumnInfo(name="instructions")
     val instructions : List<String>,
     @ColumnInfo(name="ingredients")
-    val ingredients : List<String>,
+    val ingredients : List<Ingredients>,
 ) {
 
 }

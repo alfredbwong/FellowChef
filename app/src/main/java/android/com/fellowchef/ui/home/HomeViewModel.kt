@@ -3,6 +3,7 @@ package android.com.fellowchef.ui.home
 import android.com.fellowchef.R
 import android.com.fellowchef.service.FellowChefRecipeApi
 import android.com.fellowchef.service.FellowChefRecipeService
+import android.com.fellowchef.ui.BaseViewModel
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.util.RecipeType
 import android.com.fellowchef.util.filterRecipesByTag
@@ -16,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -27,9 +28,6 @@ class HomeViewModel : ViewModel() {
     val listOfRecipesBreakfast : LiveData<List<Recipe>>
         get() = _listOfRecipesBreakfast
 
-    private val _response = MutableLiveData<String>()
-    val response : LiveData<String>
-        get() = _response
 
     init{
         getRecipes()
@@ -38,13 +36,15 @@ class HomeViewModel : ViewModel() {
     private fun getRecipes(){
         viewModelScope.launch{
             try{
+                Log.i("ViewModel", "Get Recipess.....")
                 val recipeList = FellowChefRecipeApi.retrofitService.getRecipes()
-                _response.value =
-                        "Success: ${recipeList.size} Recipe retrieved"
-                _listOfRecipesBreakfast.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.DINNER))
-                Log.i("HomeViewModel", "breakfast recipes: ${listOfRecipesBreakfast.value}")
+                Log.i("ViewModel", "$recipeList")
+                _listOfRecipesBreakfast.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.LUNCH))
             }catch(e: Exception){
-                _response.value = "Failure: ${e.message}"
+                Log.i("ViewModel", "${e.message}")
+
+                isShowToast.value = true
+                toastErrorMessage.value = "Could not get recipes : ${e.message}"
             }
         }
     }

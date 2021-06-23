@@ -32,18 +32,23 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
-        //Test response string
-        homeViewModel.response.observe(viewLifecycleOwner, Observer {
-            responseString ->
-            binding.responseText.text = responseString
-        })
 
         homeViewModel.listOfRecipesBreakfast.observe(viewLifecycleOwner, Observer {
             recipeList ->
-                binding.testSection1.refreshList(recipeList)
+            Log.i(TAG, "recipeList: $recipeList")
+                binding.trendingSection.refreshList(recipeList)
+        })
+        homeViewModel.isShowToast.observe(viewLifecycleOwner, Observer {
+            isShowToast ->
+            if (isShowToast){
+//                Toast.makeText(requireContext(), homeViewModel.toastErrorMessage.value, Toast.LENGTH_SHORT).show()
+                homeViewModel.clearToast()
+            }
         })
         return binding.root
     }
 
-
+    companion object{
+        const val TAG = "HomeFragment"
+    }
 }

@@ -25,4 +25,5 @@
     <string name="button_add_instruction">Add Instruction</string>
     <string name="hint_add_instruction">Add a instruction step</string>
     <string name="trending_text">Trending</string>
+    <string name="popular_week_text">Popular this week</string>
 </resources>
