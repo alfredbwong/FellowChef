@@ -36,7 +36,7 @@ data class Recipe (
     val ingredients : List<Ingredients>,
     @ColumnInfo(name="numServings")
     @Json(name="num_servings")
-    val numServings : Float,
+    val numServings : Int,
     @ColumnInfo(name="numLikes")
     @Json(name="num_likes")
     val numLikes: Int,
