@@ -6,5 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class Instruction (val step : Int, val text: String) : Parcelable {
+data class Instruction (
+        val step : Int,
+        val text: String) : Parcelable {
 }

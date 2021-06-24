@@ -1,7 +1,7 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentAddRecipeInstructionsBinding
-import android.com.fellowchef.ui.InstructionListAdapter
+import android.com.fellowchef.ui.AddRecipeInstructionListAdapter
 import android.com.fellowchef.ui.viewmodel.AddRecipeViewModel
 import android.content.Context
 import android.os.Bundle
@@ -33,7 +33,7 @@ class AddRecipeInstructionsFragment : Fragment() {
         binding = FragmentAddRecipeInstructionsBinding.inflate(inflater, container, false)
 
         val adapter = addRecipeViewModel.recipeInstructionsList.value?.let {
-            InstructionListAdapter(it, requireContext()) { position ->
+            AddRecipeInstructionListAdapter(it, requireContext()) { position ->
                 addRecipeViewModel.removeInstruction(position)
             }
         }

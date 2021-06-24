@@ -1,7 +1,7 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentAddRecipeIngredientsBinding
-import android.com.fellowchef.ui.IngredientListAdapter
+import android.com.fellowchef.ui.AddRecipeIngredientListAdapter
 import android.com.fellowchef.ui.viewmodel.AddRecipeViewModel
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -43,7 +42,7 @@ class AddRecipeIngredientsFragment : Fragment() {
         //Adapter for list of Ingredients
         val adapterListIngredients = addRecipeViewModel.recipeIngredientList.value?.let {
             listOfIngredients ->
-            IngredientListAdapter(listOfIngredients, requireContext()) { pos ->
+            AddRecipeIngredientListAdapter(listOfIngredients, requireContext()) { pos ->
                 addRecipeViewModel.removeIngredientItem(pos)
             }
         }

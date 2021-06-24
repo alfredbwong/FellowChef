@@ -1,16 +1,15 @@
 package android.com.fellowchef
 
-import android.com.fellowchef.di.AddRecipeComponent
 import android.com.fellowchef.di.HomeRecipeComponent
 import android.com.fellowchef.ui.home.HomeViewModel
-import android.com.fellowchef.ui.viewmodel.MainViewModel
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -39,5 +38,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{contoller, destination, arguemnts ->
+            if (destination.id == R.id.recipeDetailFragment){
+                navView.visibility= View.GONE
+            } else {
+                navView.visibility= View.VISIBLE
+            }
+        }
+
     }
 }

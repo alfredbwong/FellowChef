@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 
-class IngredientListAdapter(val listOfIngredients : MutableList<String>, val context : Context, private val itemClick: (pos: Int) -> Unit) : BaseAdapter(){
+class AddRecipeIngredientListAdapter(val listOfIngredients : MutableList<String>, val context : Context, private val itemClick: (pos: Int) -> Unit) : BaseAdapter(){
     override fun getCount(): Int {
         return listOfIngredients.size
     }

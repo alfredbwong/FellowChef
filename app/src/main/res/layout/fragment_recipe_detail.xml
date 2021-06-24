@@ -10,7 +10,7 @@
             type="android.com.fellowchef.ui.recipe.Recipe" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollViewRecipeDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/recipeDetailTitle"
@@ -52,7 +53,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -72,34 +73,59 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/ingredientsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_layout_component_spacing_small"
-                android:text="@string/ingredients" />
 
-            <LinearLayout
-                android:id="@+id/ingredientsLayout"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-            </LinearLayout>
-            <TextView
-                android:id="@+id/instructionsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_layout_component_spacing_small"
-                android:text="@string/instructions_text" />
 
-            <LinearLayout
-                android:id="@+id/instructionsLayout"
+
+                <TextView
+                    android:id="@+id/ingredientsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginTop="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
+                    android:text="@string/ingredients" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ingredientsListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/ingredientsText"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                     />
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/instructionsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginTop="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
+                    android:text="@string/instructions_text" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/instructionsListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/default_layout_component_spacing_small"
+                    android:paddingBottom="@dimen/default_layout_component_spacing_small"
+                    android:layout_below="@+id/instructionsText"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            </RelativeLayout>
+
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 
-class InstructionListAdapter (private val listOfInstructions : MutableList<String>,private val context : Context,  private val itemClick : (pos : Int) -> Unit) : BaseAdapter(){
+class AddRecipeInstructionListAdapter (private val listOfInstructions : MutableList<String>, private val context : Context, private val itemClick : (pos : Int) -> Unit) : BaseAdapter(){
     override fun getCount(): Int {
         return listOfInstructions.size
     }

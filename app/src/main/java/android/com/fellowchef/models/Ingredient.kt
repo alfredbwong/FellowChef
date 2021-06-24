@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 @Parcelize
-data class Ingredients(
+data class Ingredient(
         val name: String,
         val size: String,
         val amount: Float
