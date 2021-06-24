@@ -2,14 +2,12 @@ package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentRecipeDetailBinding
 import android.com.fellowchef.databinding.ListItemIngredientBinding
-import android.com.fellowchef.ui.recipe.ingredients.RecipeIngredientsAdapter
+import android.com.fellowchef.databinding.ListItemInstructionBinding
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,15 +28,20 @@ class RecipeDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         val recipe = RecipeDetailFragmentArgs.fromBundle(requireArguments()).selectedRecipe
         binding.recipe = recipe
-        Log.i(TAG, "Ingredients : ${recipe.ingredients}")
         for (ingredient in recipe.ingredients){
-            val bindingRecipeListItem = ListItemIngredientBinding.inflate(LayoutInflater.from(context))
-            bindingRecipeListItem.ingredientSize.text = "${ingredient.amount} ${ingredient.size}"
-            bindingRecipeListItem.ingredientName.text = ingredient.name
-            val ingredientView = bindingRecipeListItem.root
+            val bindingRecipeIngredientListItem = ListItemIngredientBinding.inflate(LayoutInflater.from(context))
+            bindingRecipeIngredientListItem.ingredientSize.text = "${ingredient.amount} ${ingredient.size}"
+            bindingRecipeIngredientListItem.ingredientName.text = ingredient.name
+            val ingredientView = bindingRecipeIngredientListItem.root
             binding.ingredientsLayout.addView(ingredientView)
         }
-        //Create sample ingredient
+
+        for (instruction in recipe.instructions){
+            val bindingRecipeInstructionListItem = ListItemInstructionBinding.inflate(LayoutInflater.from(context))
+            bindingRecipeInstructionListItem.instructionStep.text = "${instruction.step}. ${instruction.text}"
+            val instructionView = bindingRecipeInstructionListItem.root
+            binding.instructionsLayout.addView(instructionView)
+        }
         return binding.root
     }
 

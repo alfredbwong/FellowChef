@@ -1,6 +1,7 @@
 package android.com.fellowchef.ui.recipe
 
 import android.com.fellowchef.models.Ingredients
+import android.com.fellowchef.models.Instruction
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -31,7 +32,7 @@ data class Recipe (
     @Json(name="long_description")
     val longDescription: String,
     @ColumnInfo(name="instructions")
-    val instructions : List<String>,
+    val instructions : List<Instruction>,
     @ColumnInfo(name="ingredients")
     val ingredients : List<Ingredients>,
     @ColumnInfo(name="numServings")

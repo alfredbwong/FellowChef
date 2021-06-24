@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginRight="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
                     android:text="@string/serving_size_text" />
 
                 <TextView
@@ -92,6 +92,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_layout_component_spacing_small"
                 android:text="@string/instructions_text" />
+
+            <LinearLayout
+                android:id="@+id/instructionsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
     </ScrollView>
