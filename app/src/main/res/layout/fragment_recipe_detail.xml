@@ -62,14 +62,16 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/default_layout_component_spacing_small"
                     android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
-                    android:text="@string/serving_size_text" />
+                    android:text="@string/serving_size_text"
+                    style="@style/RecipeDetailSection"/>
 
                 <TextView
                     android:id="@+id/servingSizeValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/default_layout_component_spacing_small"
-                    android:text="@{Integer.toString(recipe.numServings)}" />
+                    android:text="@{Integer.toString(recipe.numServings)}"
+                    style="@style/RecipeDetailSection"/>
 
             </LinearLayout>
 
@@ -88,7 +90,8 @@
                     android:layout_marginTop="@dimen/default_layout_component_spacing_small"
                     android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
                     android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
-                    android:text="@string/ingredients" />
+                    android:text="@string/ingredients"
+                    style="@style/RecipeDetailSection"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ingredientsListView"
@@ -106,22 +109,22 @@
 
                 <TextView
                     android:id="@+id/instructionsText"
+                    style="@style/RecipeDetailSection"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginTop="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:padding="@dimen/padding_default"
                     android:text="@string/instructions_text" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/instructionsListView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="@dimen/default_layout_component_spacing_small"
-                    android:paddingBottom="@dimen/default_layout_component_spacing_small"
                     android:layout_below="@+id/instructionsText"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                    android:paddingBottom="@dimen/default_layout_component_spacing_small"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
             </RelativeLayout>
 
         </LinearLayout>
