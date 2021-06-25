@@ -22,11 +22,6 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="android.com.fellowchef.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="android.com.fellowchef.RecipeDetailFragment"
         android:label="fragment_recipe_detail"
