@@ -30,4 +30,9 @@
             android:name="selectedRecipe"
             app:argType="android.com.fellowchef.ui.recipe.Recipe" />
     </fragment>
+    <fragment
+        android:id="@+id/networkErrorFragment"
+        android:name="android.com.fellowchef.NetworkErrorFragment"
+        android:label="fragment_network_error"
+        tools:layout="@layout/fragment_network_error" />
 </navigation>
