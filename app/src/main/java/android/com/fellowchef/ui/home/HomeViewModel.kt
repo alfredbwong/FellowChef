@@ -25,6 +25,9 @@ class HomeViewModel @Inject constructor() : BaseViewModel(){
     val listOfRecipesBreakfast : LiveData<List<Recipe>>
         get() = _listOfRecipesBreakfast
 
+    private val _listOfRecipesTrending = MutableLiveData<List<Recipe>>()
+    val listOfRecipesTrending : LiveData<List<Recipe>>
+        get() = _listOfRecipesTrending
 
     init{
         getRecipes()
@@ -37,6 +40,7 @@ class HomeViewModel @Inject constructor() : BaseViewModel(){
                 val recipeList = FellowChefRecipeApi.retrofitService.getRecipes()
                 Log.d("HomeViewModel", "Recipe list retrieved : $recipeList")
                 _listOfRecipesBreakfast.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.LUNCH))
+                _listOfRecipesTrending.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.TRENDING))
             }catch(e: Exception){
                 Log.d("HomeViewModel", "Error: ${e.message}")
 

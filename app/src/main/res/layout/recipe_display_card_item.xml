@@ -10,7 +10,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="185dp"
+        android:layout_width="@dimen/card_view_width"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:paddingBottom="10dp"
@@ -27,8 +27,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/big_card_image_height"
-                android:layout_margin="8dp"
+                android:layout_height="@dimen/card_view_width"
                 android:contentDescription="@string/content_desc_image_default"
                 app:imageUrl="@{recipe.imageUrl}"
                 app:layout_constraintEnd_toStartOf="@+id/recipeItemText"

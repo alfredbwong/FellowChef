@@ -4,5 +4,6 @@ enum class RecipeType {
     BREAKFAST,
     LUNCH,
     DINNER,
-    SNACK
+    SNACK,
+    TRENDING
 }

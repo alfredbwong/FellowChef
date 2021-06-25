@@ -31,7 +31,7 @@
                 </android.com.fellowchef.ui.component.SectionLayout>
 
                 <android.com.fellowchef.ui.component.SectionLayout
-                    android:id="@+id/testSection2"
+                    android:id="@+id/popularThisWeekSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:sectionTitle="@string/popular_week_text">

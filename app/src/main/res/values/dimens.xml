@@ -11,4 +11,5 @@
     <dimen name="home_section_text">18sp</dimen>
     <dimen name="default_layout_component_spacing_small">16dp</dimen>
     <dimen name="recipe_detail_section">18sp</dimen>
+    <dimen name="card_view_width">185dp</dimen>
 </resources>
