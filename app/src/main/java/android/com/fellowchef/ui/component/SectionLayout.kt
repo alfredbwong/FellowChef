@@ -1,15 +1,15 @@
 package android.com.fellowchef.ui.component
 
 import android.com.fellowchef.R
+import android.com.fellowchef.ViewRecipeActivity
 import android.com.fellowchef.databinding.HomeSectionBinding
-import android.com.fellowchef.ui.home.HomeFragmentDirections
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.ui.recipe.RecipeAdapter
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 class SectionLayout(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs ) {
@@ -20,8 +20,10 @@ class SectionLayout(context: Context, attrs: AttributeSet) : LinearLayout(contex
 
         adapter = RecipeAdapter{
             recipe ->
-            findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToRecipeDetailFragment(recipe))
-
+            val intent = Intent(context, ViewRecipeActivity::class.java).apply{
+                putExtra("selected_recipe", recipe)
+            }
+            context.startActivity(intent)
         }
 
         //Set the recyclerView to be horizontal, this cannot be done in XML and must be done in code
@@ -39,7 +41,9 @@ class SectionLayout(context: Context, attrs: AttributeSet) : LinearLayout(contex
         adapter.submitList(recipeList)
     }
 
+    fun SectionLayout.onRecipeClicked(){
 
+    }
 
 
 }
