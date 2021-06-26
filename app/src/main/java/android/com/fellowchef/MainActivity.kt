@@ -63,13 +63,6 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController)
         navView.setupWithNavController(navController)
 
-        navController.addOnDestinationChangedListener{ _, destination, _ ->
-            if (destination.id == R.id.recipeDetailFragment){
-                navView.visibility= View.GONE
-            } else {
-                navView.visibility= View.VISIBLE
-            }
-        }
         networkMonitor.result = { isAvailable, type ->
             runOnUiThread {
                 when (isAvailable) {
