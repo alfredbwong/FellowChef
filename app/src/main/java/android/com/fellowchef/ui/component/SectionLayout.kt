@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 class SectionLayout(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs ) {
     private var binding : HomeSectionBinding = HomeSectionBinding.inflate(LayoutInflater.from(context), this,  true)
-    private lateinit var adapter : RecipeAdapter
+    private var adapter : RecipeAdapter
     init{
         val customAttributeStyle = context.obtainStyledAttributes(attrs, R.styleable.SectionLayout, 0 ,0)
 
@@ -40,10 +40,5 @@ class SectionLayout(context: Context, attrs: AttributeSet) : LinearLayout(contex
     fun refreshList(recipeList: List<Recipe>) {
         adapter.submitList(recipeList)
     }
-
-    fun SectionLayout.onRecipeClicked(){
-
-    }
-
 
 }
