@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="china_pink">#e36397</color>
+    <color name="opera_mauve">#bc8da7</color>
+    <color name="black_shadows">#bdb4bf</color>
+    <color name="gainsboro">#d9d9d9</color>
+    <color name="cultured">#eff2ef</color>
+
 </resources>
