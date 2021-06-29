@@ -76,56 +76,30 @@
             </LinearLayout>
 
 
-            <RelativeLayout
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tablayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
-
-                <TextView
-                    android:id="@+id/ingredientsText"
-                    android:layout_width="match_parent"
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/ingredientsTab"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginTop="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
-                    android:text="@string/ingredients"
-                    style="@style/RecipeDetailSection"/>
+                    android:text="@string/ingredients" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/ingredientsListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@id/ingredientsText"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    />
-            </RelativeLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/instructionsTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/instructions" />
 
+            </com.google.android.material.tabs.TabLayout>
 
-            <RelativeLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/instructionsText"
-                    style="@style/RecipeDetailSection"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginTop="@dimen/default_layout_component_spacing_small"
-                    android:layout_marginEnd="@dimen/margin_default"
-                    android:padding="@dimen/padding_default"
-                    android:text="@string/instructions_text" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/instructionsListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/instructionsText"
-                    android:paddingBottom="@dimen/default_layout_component_spacing_small"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-            </RelativeLayout>
 
         </LinearLayout>
 

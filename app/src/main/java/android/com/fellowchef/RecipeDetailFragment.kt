@@ -1,8 +1,6 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentRecipeDetailBinding
-import android.com.fellowchef.models.IngredientsListAdapter
-import android.com.fellowchef.models.InstructionsListAdapter
 import android.com.fellowchef.ui.recipe.Recipe
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 /**
@@ -19,30 +18,37 @@ import androidx.recyclerview.widget.DividerItemDecoration
  * create an instance of this fragment.
  */
 class RecipeDetailFragment : Fragment() {
+    private lateinit var pageAdapter: RecipeDetailPagerAdapter
+    private lateinit var viewpager: ViewPager2
+    private lateinit var binding: FragmentRecipeDetailBinding
+    private lateinit var recipe: Recipe
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = FragmentRecipeDetailBinding.inflate(inflater)
+        binding = FragmentRecipeDetailBinding.inflate(inflater)
+        recipe = (activity as ViewRecipeActivity).recipe
+
         binding.lifecycleOwner = this
-        val recipe = (activity as ViewRecipeActivity).recipe
         binding.recipe = recipe
-
-        val divider = DividerItemDecoration(requireActivity().applicationContext, DividerItemDecoration.VERTICAL)
-
-        val listIngredientAdapter = IngredientsListAdapter()
-        binding.ingredientsListView.adapter = listIngredientAdapter
-        binding.ingredientsListView.addItemDecoration(divider);
-        listIngredientAdapter.submitList(recipe.ingredients)
-
-        val listInstructionAdapter = InstructionsListAdapter()
-        binding.instructionsListView.adapter = listInstructionAdapter
-        binding.instructionsListView.addItemDecoration(divider);
-        listInstructionAdapter.submitList(recipe.instructions)
-
         return binding.root
     }
 
     companion object {
         const val TAG = "RecipeDetailFragment"
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        pageAdapter = RecipeDetailPagerAdapter(this, recipe)
+        viewpager = binding.viewPager
+        viewpager.adapter = pageAdapter
+        val tabLayout = binding.tablayout
+        TabLayoutMediator(tabLayout, viewpager) { tab, position ->
+            if (position == 0)
+                tab.text = getString(R.string.ingredients)
+            else if (position == 1)
+                tab.text = getString(R.string.instructions)
+
+        }.attach()
     }
 }
