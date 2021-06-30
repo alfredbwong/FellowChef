@@ -32,16 +32,15 @@ class RecipeRepository(private val recipeService: FellowChefRecipeService,
             override suspend fun fetchData(): Response<List<Recipe>> {
                 Log.i(TAG, "fetchData...")
 
-                val call = FellowChefRecipeApi.retrofitService.getRecipes()
-                val response = Success(call)
+                val response = FellowChefRecipeApi.retrofitService.getRecipes().execute()
 
-//                return if (!response.isSuccessful || response.body().isNullOrEmpty()) {
-//                    Failure(400, "Invalid Response")
-//                } else {
-//                    Success(response.body()!!)
-//
-//                }
-                return response
+
+                return if (!response.isSuccessful || response.body().isNullOrEmpty()) {
+                    return Failure(400, "Invalid Response")
+                } else {
+                    return Success(response.body()!!)
+
+                }
             }
 
             override suspend fun saveToDisk(data: List<Recipe>): Boolean {
