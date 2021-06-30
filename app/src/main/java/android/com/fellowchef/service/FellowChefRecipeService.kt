@@ -21,8 +21,7 @@ private val retrofit = Retrofit.Builder()
 
 interface FellowChefRecipeService {
     @GET("/api/json/v1/recipes")
-    suspend fun getRecipes():
-            List<Recipe>
+    suspend fun getRecipes():List<Recipe>
 }
 
 object FellowChefRecipeApi {

@@ -40,8 +40,8 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
-        homeViewModel.listOfRecipesBreakfast.observe(viewLifecycleOwner, Observer { recipeList ->
-            binding.trendingSection.refreshList(recipeList)
+        homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
+            recipeList.data?.let { binding.trendingSection.refreshList(it) }
         })
         homeViewModel.listOfRecipesTrending.observe(viewLifecycleOwner, Observer { recipeList ->
             binding.popularThisWeekSection.refreshList(recipeList)

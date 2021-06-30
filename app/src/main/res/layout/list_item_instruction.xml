@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_layout_component_spacing_small"
             android:padding="@dimen/padding_default"
+            android:textStyle="bold"
             app:instructionStepAndText="@{instruction}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

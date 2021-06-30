@@ -2,6 +2,7 @@ package android.com.fellowchef.util
 
 import android.com.fellowchef.models.Ingredient
 import android.com.fellowchef.models.Instruction
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -21,7 +22,11 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 @BindingAdapter("ingredientAmountAndSize")
 fun bindIngredientAmountAndSize(textView: TextView, ingredient : Ingredient){
-    textView.text = "${ingredient.amount} ${ingredient.size}"
+    if (ingredient.amount < 0){
+        textView.visibility = View.GONE
+    } else {
+        textView.text = "${ingredient.amount} ${ingredient.size}"
+    }
 }
 
 @BindingAdapter("instructionStepAndText")
