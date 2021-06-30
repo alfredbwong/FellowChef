@@ -10,17 +10,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 
-class RecipeRepository(private val recipeService: FellowChefRecipeService,
-                       private val recipeDAO: RecipeDAO,
-                       private val viewModelScope: CoroutineScope) {
+class RecipeRepository(
+    private val recipeService: FellowChefRecipeService,
+    private val recipeDAO: RecipeDAO,
+    private val viewModelScope: CoroutineScope
+) {
 
     fun getRecipesFeed(): LiveData<Resource<List<Recipe>>> {
         //Return using object expression from abstract super class
         return object : NetworkResource<List<Recipe>, String>(viewModelScope) {
             override suspend fun loadFromDisk(): LiveData<List<Recipe>> {
-                Log.i(TAG, "LoadFromDisk...")
                 val dataFromDisk = MutableLiveData(recipeDAO.getRecipes())
-                Log.i(TAG, "LoadFromDisk...${dataFromDisk.value}")
                 return dataFromDisk
             }
 
@@ -30,17 +30,15 @@ class RecipeRepository(private val recipeService: FellowChefRecipeService,
             }
 
             override suspend fun fetchData(): Response<List<Recipe>> {
-                Log.i(TAG, "fetchData...")
 
                 val response = FellowChefRecipeApi.retrofitService.getRecipes().execute()
 
-
-                return if (!response.isSuccessful || response.body().isNullOrEmpty()) {
+                if (!response.isSuccessful || response.body().isNullOrEmpty()) {
                     return Failure(400, "Invalid Response")
-                } else {
-                    return Success(response.body()!!)
-
                 }
+                return Success(response.body()!!)
+
+
             }
 
             override suspend fun saveToDisk(data: List<Recipe>): Boolean {

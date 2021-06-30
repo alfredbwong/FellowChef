@@ -11,17 +11,17 @@ import retrofit2.http.GET
 const val BASE_URL = "https://aqueous-scrubland-10484.herokuapp.com"
 
 
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
+private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+
+
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .baseUrl(BASE_URL)
+        .build()
 
 interface FellowChefRecipeService {
     @GET("/api/json/v1/recipes")
-    suspend fun getRecipes(): Call<List<Recipe>>
+    fun getRecipes(): Call<List<Recipe>>
 }
 
 object FellowChefRecipeApi {

@@ -6,8 +6,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import com.squareup.moshi.*
 import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "recipe_table")
@@ -15,8 +14,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Recipe(
         @PrimaryKey(autoGenerate = true)
+        @Json(name = "id")
         val id: Int,
         @ColumnInfo(name = "title")
+        @Json(name = "title")
         val title: String,
         @ColumnInfo(name = "imageUrl")
         @Json(name = "image_url")
@@ -31,8 +32,10 @@ data class Recipe(
         @Json(name = "long_description")
         val longDescription: String,
         @ColumnInfo(name = "instructions")
+        @Json(name="instructions")
         val instructions: List<Instruction>,
         @ColumnInfo(name = "ingredients")
+        @Json(name="ingredients")
         val ingredients: List<Ingredient>,
         @ColumnInfo(name = "numServings")
         @Json(name = "num_servings")
@@ -44,5 +47,6 @@ data class Recipe(
         @Json(name = "num_dislikes")
         val numDislikes: Int,
 ) : Parcelable {
+
 
 }

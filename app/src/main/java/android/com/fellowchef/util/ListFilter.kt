@@ -6,10 +6,10 @@ fun filterRecipesByTag(listOfRecipes: List<Recipe>, listOfTags : List<RecipeType
     val returnListOfRecipes = mutableListOf<Recipe>()
     for (recipe in listOfRecipes){
         for (tag in listOfTags){
-            if (recipe.recipeType.contains(tag.name)){
-                returnListOfRecipes.add(recipe)
-                break;
-            }
+//            if (recipe.recipeType.contains(tag.name)){
+//                returnListOfRecipes.add(recipe)
+//                break;
+//            }
         }
     }
     return returnListOfRecipes
