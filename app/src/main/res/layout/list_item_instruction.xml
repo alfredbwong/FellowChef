@@ -15,16 +15,34 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/instructionNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_layout_component_spacing_small"
+            android:hint="123"
+            android:padding="@dimen/padding_default"
+            android:text="@{Integer.toString(instruction.step)}"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/instructionStep"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".10" />
+
+        <TextView
             android:id="@+id/instructionStep"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_layout_component_spacing_small"
+            android:layout_marginTop="@dimen/default_layout_component_spacing_small"
+            android:layout_marginBottom="@dimen/default_layout_component_spacing_small"
             android:padding="@dimen/padding_default"
+            android:text="@{instruction.text}"
             android:textStyle="bold"
-            app:instructionStepAndText="@{instruction}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.77"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".75" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

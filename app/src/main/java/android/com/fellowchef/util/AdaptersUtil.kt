@@ -29,7 +29,3 @@ fun bindIngredientAmountAndSize(textView: TextView, ingredient : Ingredient){
     }
 }
 
-@BindingAdapter("instructionStepAndText")
-fun bindInstructionStepAndText(textView: TextView, instruction : Instruction){
-    textView.text = "${instruction.step}. ${instruction.text}"
-}
