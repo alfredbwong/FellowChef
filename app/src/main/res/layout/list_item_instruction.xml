@@ -18,8 +18,6 @@
             android:id="@+id/instructionNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/default_layout_component_spacing_small"
-            android:hint="123"
             android:padding="@dimen/padding_default"
             android:text="@{Integer.toString(instruction.step)}"
             android:textAlignment="center"
@@ -40,9 +38,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.77"
+            app:layout_constraintHorizontal_bias=".75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".75" />
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent=".85" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
