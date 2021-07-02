@@ -9,9 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.com.fellowchef.R
+import android.com.fellowchef.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
-
+    private lateinit var binding: FragmentSearchBinding
     private lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
@@ -19,13 +20,8 @@ class SearchFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        searchViewModel =
-                ViewModelProvider(this).get(SearchViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_search, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        searchViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 }
