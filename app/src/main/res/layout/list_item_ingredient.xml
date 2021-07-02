@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/ingredientName"
-            android:layout_width="267dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
             android:layout_marginBottom="@dimen/margin_default"
