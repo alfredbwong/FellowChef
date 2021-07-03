@@ -35,4 +35,7 @@
     <string name="network_error_text">You must turn on the network in order to proceed!</string>
     <string name="search_text">Search</string>
     <string name="title_search">Search</string>
+    <string name="difficulty_section">Difficulty</string>
+    <string name="meal_type_section">Meal Type</string>
+    <string name="cuisine_section">Cuisine</string>
 </resources>

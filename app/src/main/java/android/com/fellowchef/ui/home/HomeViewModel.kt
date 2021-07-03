@@ -1,31 +1,25 @@
 package android.com.fellowchef.ui.home
 
 import android.com.fellowchef.database.RecipeDatabase
-import android.com.fellowchef.di.HomeRecipeActivityScope
+import android.com.fellowchef.di.MainRecipeActivityScope
 import android.com.fellowchef.repository.RecipeRepository
 import android.com.fellowchef.repository.models.Resource
 import android.com.fellowchef.service.BASE_URL
-import android.com.fellowchef.service.FellowChefRecipeApi
 import android.com.fellowchef.service.FellowChefRecipeService
 import android.com.fellowchef.ui.BaseViewModel
 import android.com.fellowchef.ui.recipe.Recipe
-import android.com.fellowchef.util.RecipeType
-import android.com.fellowchef.util.filterRecipesByTag
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 
-@HomeRecipeActivityScope
+@MainRecipeActivityScope
 class HomeViewModel @Inject constructor(applicationContext: Context) : BaseViewModel(){
 
     private val repository: RecipeRepository =

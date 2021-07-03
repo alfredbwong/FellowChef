@@ -1,6 +1,5 @@
 package android.com.fellowchef.di
 
-import android.com.fellowchef.*
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
@@ -16,7 +15,8 @@ interface AppComponent {
     }
 
     fun addRecipeComponent(): AddRecipeComponent.Factory
-    fun homeRecipeComponent(): HomeRecipeComponent.Factory
+    fun homeRecipeComponent(): MainRecipeComponent.Factory
+//    fun searchRecipeComponent(): SearchRecipeComponent.Factory
 
 
 }

@@ -11,7 +11,7 @@ import android.com.fellowchef.repository.models.Response
 import android.util.Log
 
 
-abstract class NetworkResource<T,K>(private val viewModelScope: CoroutineScope){
+abstract class NetworkResource<T>(private val viewModelScope: CoroutineScope){
     private val result = MediatorLiveData<Resource<T>>()
     init{
         launch()

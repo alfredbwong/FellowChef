@@ -1,5 +1,6 @@
 package android.com.fellowchef.service
 
+import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.ui.recipe.Recipe
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -22,6 +23,9 @@ private val retrofit = Retrofit.Builder()
 interface FellowChefRecipeService {
     @GET("/api/json/v1/recipes")
     fun getRecipes(): Call<List<Recipe>>
+
+    @GET("/api/json/v1/recipeFilters")
+    fun getRecipeFilters(): Call<List<RecipeCategory>>
 }
 
 object FellowChefRecipeApi {

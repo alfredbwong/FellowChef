@@ -5,6 +5,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @InstallIn(SingletonComponent::class)
-@Module(subcomponents = [AddRecipeComponent::class, HomeRecipeComponent::class])
+@Module(subcomponents = [AddRecipeComponent::class, MainRecipeComponent::class, SearchRecipeComponent::class])
 class AppSubcomponents {
 }

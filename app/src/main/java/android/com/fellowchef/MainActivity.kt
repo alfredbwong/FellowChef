@@ -1,28 +1,16 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.ActivityMainBinding
-import android.com.fellowchef.di.HomeRecipeComponent
+import android.com.fellowchef.di.MainRecipeComponent
 import android.com.fellowchef.network.ConnectionType
 import android.com.fellowchef.network.NetworkMonitorUtil
 import android.com.fellowchef.ui.home.HomeViewModel
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
-import android.net.NetworkInfo
-import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -37,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var homeViewModel: HomeViewModel
 
-    lateinit var homeRecipeComponent: HomeRecipeComponent
+    lateinit var mainRecipeComponent: MainRecipeComponent
 
     private val networkMonitor = NetworkMonitorUtil(this)
     private lateinit var binding : ActivityMainBinding
@@ -45,8 +33,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //Use Dagger to inject dependencies
 
-        homeRecipeComponent = (applicationContext as FellowChefApplication).appComponent.homeRecipeComponent().create()
-        homeRecipeComponent.inject(this)
+        mainRecipeComponent = (applicationContext as FellowChefApplication).appComponent.homeRecipeComponent().create()
+        mainRecipeComponent.inject(this)
 
 
 
