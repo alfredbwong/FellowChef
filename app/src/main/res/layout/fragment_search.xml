@@ -7,50 +7,120 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.search.SearchFragment">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_default"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_default">
+            android:fillViewport="true"
+            android:padding="@dimen/padding_default"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
 
-            <TextView
-                android:id="@+id/difficultySection"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/difficulty_section"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/margin_bottom_fragment"
+                android:id="@+id/searchLinearLayout">
 
-            <TextView
-                android:id="@+id/responseText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/difficultySectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:text="@string/difficulty_section"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/mealTypeSection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/meal_type_section"
-                android:textStyle="bold" />
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/difficultyFieldsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    app:flexDirection="column"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch">
 
-            <TextView
-                android:id="@+id/cuisineSection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_default"
-                android:text="@string/cuisine_section"
-                android:textStyle="bold" />
-        </LinearLayout>
+                </com.google.android.flexbox.FlexboxLayout>
 
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/cuisineSectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:text="@string/cuisine_section"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
 
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/cuisineFieldsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    app:flexDirection="column"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/mealTypeSectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:text="@string/meal_type_section"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/mealTypeFieldsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    app:flexDirection="column"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/occasionSectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:text="@string/occasion_type_section"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/occasionFieldsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    app:flexDirection="column"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+
+                <TextView
+                    android:id="@+id/dietSectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    android:text="@string/diet_type_section"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/dietFieldsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default"
+                    app:flexDirection="column"
+                    app:alignContent="stretch"
+                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

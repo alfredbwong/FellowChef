@@ -29,7 +29,7 @@ class RecipeRepository(
 
             override suspend fun shouldFetch(data: List<Recipe>?): Boolean {
                 Log.i(TAG, "shouldFetch...${data.isNullOrEmpty()}")
-                return data.isNullOrEmpty() || recipeListRateLimit.shouldFetch("RECIPE_KEY")
+                return true
             }
 
             override suspend fun fetchData(): Response<List<Recipe>> {

@@ -38,4 +38,6 @@
     <string name="difficulty_section">Difficulty</string>
     <string name="meal_type_section">Meal Type</string>
     <string name="cuisine_section">Cuisine</string>
+    <string name="diet_type_section">Diet Type</string>
+    <string name="occasion_type_section">Occasion</string>
 </resources>

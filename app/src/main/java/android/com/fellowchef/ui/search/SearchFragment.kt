@@ -13,9 +13,14 @@ import android.com.fellowchef.R
 import android.com.fellowchef.databinding.FragmentSearchBinding
 import android.com.fellowchef.di.MainRecipeActivityScope
 import android.com.fellowchef.di.SearchRecipeActivityScope
+import android.com.fellowchef.ui.component.FilterButton
 import android.com.fellowchef.ui.home.HomeViewModel
+import android.com.fellowchef.util.CategoryName
 import android.content.Context
+import android.util.AttributeSet
 import android.util.Log
+import android.widget.Button
+import androidx.appcompat.widget.AppCompatButton
 import javax.inject.Inject
 
 @MainRecipeActivityScope
@@ -23,7 +28,7 @@ class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
     @Inject
-    lateinit var searchViewModel : SearchViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -31,19 +36,57 @@ class SearchFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
-        searchViewModel.listOfRecipeFilters.observe(viewLifecycleOwner, Observer {
-            recipeCateogryResource ->
-            Log.i(TAG, "listOfRecipeFilters = ${recipeCateogryResource}")
-            binding.responseText.text = recipeCateogryResource.data.toString()
+        searchViewModel.listOfRecipeFilters.observe(viewLifecycleOwner, Observer { recipeCateogryResource ->
+            if (recipeCateogryResource.data != null) {
+
+                for (category in recipeCateogryResource.data) {
+                    when (category.categoryName) {
+                        CategoryName.CUISINE.name.toLowerCase() -> {
+                            for (categoryField in category.categoryFields) {
+                                binding.cuisineFieldsLayout.addView(FilterButton(requireContext(), binding.cuisineFieldsLayout, categoryField))
+
+                            }
+                        }
+                        CategoryName.DIET_TYPE.name.toLowerCase() -> {
+                            for (categoryField in category.categoryFields) {
+                                binding.dietFieldsLayout.addView(FilterButton(requireContext(), binding.dietFieldsLayout, categoryField))
+
+                            }
+                        }
+                        CategoryName.MEAL_TYPE.name.toLowerCase() -> {
+                            for (categoryField in category.categoryFields) {
+                                binding.mealTypeFieldsLayout.addView(FilterButton(requireContext(), binding.mealTypeFieldsLayout, categoryField))
+
+                            }
+                        }
+                        CategoryName.DIFFICULTY.name.toLowerCase() -> {
+                            for (categoryField in category.categoryFields) {
+                                binding.difficultyFieldsLayout.addView(FilterButton(requireContext(), binding.difficultyFieldsLayout, categoryField))
+
+                            }
+                        }
+                        CategoryName.OCCASION_TYPE.name.toLowerCase() -> {
+                            for (categoryField in category.categoryFields) {
+                                binding.occasionFieldsLayout.addView(FilterButton(requireContext(), binding.occasionFieldsLayout, categoryField))
+
+                            }
+                        }
+                    }
+                }
+            }
+
         })
+        binding.invalidateAll()
         return binding.root
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity as MainActivity).mainRecipeComponent.inject(this)
     }
-    companion object{
+
+    companion object {
         const val TAG = "SearchFragment"
     }
 }

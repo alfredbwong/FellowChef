@@ -69,7 +69,7 @@ class AddRecipeIngredientsFragment : Fragment() {
 
         }
         addRecipeViewModel.recipeIngredientList.observe(viewLifecycleOwner, Observer {
-            listOfIngredients ->
+            _ ->
             adapterListIngredients?.notifyDataSetChanged()
         })
 
