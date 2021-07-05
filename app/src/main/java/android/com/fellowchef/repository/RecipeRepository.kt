@@ -6,10 +6,12 @@ import android.com.fellowchef.repository.models.*
 import android.com.fellowchef.service.FellowChefRecipeApi
 import android.com.fellowchef.service.FellowChefRecipeService
 import android.com.fellowchef.ui.recipe.Recipe
+import android.com.fellowchef.util.RateLimiter
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
+import java.util.concurrent.TimeUnit
 
 class RecipeRepository(
     private val recipeService: FellowChefRecipeService,
@@ -17,6 +19,7 @@ class RecipeRepository(
     private val viewModelScope: CoroutineScope
 ) {
 
+    private val recipeListRateLimit = RateLimiter<String>(1, TimeUnit.MINUTES)
     fun getRecipesFeed(): LiveData<Resource<List<Recipe>>> {
         //Return using object expression from abstract super class
         return object : NetworkResource<List<Recipe>>(viewModelScope) {
@@ -26,7 +29,7 @@ class RecipeRepository(
 
             override suspend fun shouldFetch(data: List<Recipe>?): Boolean {
                 Log.i(TAG, "shouldFetch...${data.isNullOrEmpty()}")
-                return data.isNullOrEmpty()
+                return data.isNullOrEmpty() || recipeListRateLimit.shouldFetch("RECIPE_KEY")
             }
 
             override suspend fun fetchData(): Response<List<Recipe>> {

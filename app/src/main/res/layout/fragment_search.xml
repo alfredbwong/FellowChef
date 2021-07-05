@@ -11,34 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchFragment">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="@dimen/margin_default"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_default">
 
             <TextView
                 android:id="@+id/difficultySection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/difficulty_section" />
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/difficulty_section"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/responseText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
                 android:text="TextView" />
 
             <TextView
                 android:id="@+id/mealTypeSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/meal_type_section" />
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/meal_type_section"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/cuisineSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/cuisine_section" />
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/cuisine_section"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
