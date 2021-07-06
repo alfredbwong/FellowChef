@@ -1,26 +1,23 @@
 package android.com.fellowchef.ui.search
 
 import android.com.fellowchef.MainActivity
+import android.com.fellowchef.databinding.FragmentSearchBinding
+import android.com.fellowchef.di.MainRecipeActivityScope
+import android.com.fellowchef.ui.component.FilterButton
+import android.com.fellowchef.util.CategoryName
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import android.com.fellowchef.R
-import android.com.fellowchef.databinding.FragmentSearchBinding
-import android.com.fellowchef.di.MainRecipeActivityScope
-import android.com.fellowchef.di.SearchRecipeActivityScope
-import android.com.fellowchef.ui.component.FilterButton
-import android.com.fellowchef.ui.home.HomeViewModel
-import android.com.fellowchef.util.CategoryName
-import android.content.Context
-import android.util.AttributeSet
-import android.util.Log
-import android.widget.Button
-import androidx.appcompat.widget.AppCompatButton
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexWrap
+import com.google.android.flexbox.FlexboxLayout
 import javax.inject.Inject
 
 @MainRecipeActivityScope
@@ -44,7 +41,6 @@ class SearchFragment : Fragment() {
                         CategoryName.CUISINE.name.toLowerCase() -> {
                             for (categoryField in category.categoryFields) {
                                 binding.cuisineFieldsLayout.addView(FilterButton(requireContext(), binding.cuisineFieldsLayout, categoryField))
-
                             }
                         }
                         CategoryName.DIET_TYPE.name.toLowerCase() -> {

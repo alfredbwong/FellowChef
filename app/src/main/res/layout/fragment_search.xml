@@ -36,16 +36,14 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
+
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/difficultyFieldsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    app:flexDirection="column"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch">
-
-                </com.google.android.flexbox.FlexboxLayout>
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"/>
 
                 <TextView
                     android:id="@+id/cuisineSectionTitle"
@@ -61,9 +59,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    app:flexDirection="column"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"/>
 
                 <TextView
                     android:id="@+id/mealTypeSectionTitle"
@@ -79,9 +76,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    app:flexDirection="column"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"/>
 
                 <TextView
                     android:id="@+id/occasionSectionTitle"
@@ -97,9 +93,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    app:flexDirection="column"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"/>
 
                 <TextView
                     android:id="@+id/dietSectionTitle"
@@ -115,10 +110,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
-                    app:flexDirection="column"
-                    app:alignContent="stretch"
-                    app:alignItems="stretch"></com.google.android.flexbox.FlexboxLayout>
-
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
