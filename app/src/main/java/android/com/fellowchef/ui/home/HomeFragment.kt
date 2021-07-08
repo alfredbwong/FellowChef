@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import android.com.fellowchef.databinding.FragmentHomeBinding
+import android.com.fellowchef.repository.models.Status
 import android.content.Context
+import android.opengl.Visibility
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -29,7 +31,19 @@ class HomeFragment : Fragment() {
             binding.textHome.text = it
         })
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
-            recipeList.data?.let { binding.trendingSection.refreshList(it) }
+            when (recipeList.status) {
+                Status.SUCCESS->{
+
+                    recipeList.data?.let { binding.trendingSection.refreshList(it) }
+                    showSuccessComponents()
+                }
+                Status.ERROR->{
+
+                }
+                Status.LOADING->{
+                    showLoadingComponents()
+                }
+            }
         })
         homeViewModel.listOfRecipesTrending.observe(viewLifecycleOwner, Observer { recipeList ->
             binding.popularThisWeekSection.refreshList(recipeList)
@@ -40,6 +54,16 @@ class HomeFragment : Fragment() {
             }
         })
         return binding.root
+    }
+
+    private fun showSuccessComponents() {
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.homeScrollView.visibility = View.VISIBLE
+    }
+
+    private fun showLoadingComponents() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.homeScrollView.visibility = View.INVISIBLE
     }
 
     override fun onAttach(context: Context) {

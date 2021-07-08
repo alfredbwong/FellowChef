@@ -7,6 +7,7 @@ import android.com.fellowchef.service.FellowChefRecipeApi
 import android.com.fellowchef.service.FellowChefRecipeService
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.util.RateLimiter
+import android.com.fellowchef.util.safeExecute
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -34,7 +35,7 @@ class RecipeRepository(
 
             override suspend fun fetchData(): Response<List<Recipe>> {
 
-                val response = FellowChefRecipeApi.retrofitService.getRecipes().execute()
+                val response = FellowChefRecipeApi.retrofitService.getRecipes().safeExecute()
 
                 if (!response.isSuccessful || response.body().isNullOrEmpty()) {
                     return Failure(400, "Invalid Response")
@@ -67,13 +68,11 @@ class RecipeRepository(
             }
 
             override suspend fun fetchData(): Response<List<RecipeCategory>> {
-                val response =FellowChefRecipeApi.retrofitService.getRecipeFilters().execute()
-                Log.i(TAG, "filter feed ${response}")
-                Log.i(TAG, "filter feed ${response.body()}")
+                val response =FellowChefRecipeApi.retrofitService.getRecipeFilters().safeExecute()
+
                 if (!response.isSuccessful || response.body().isNullOrEmpty()) {
                     return Failure(400, "Invalid Response")
                 }
-                Log.i(TAG, "Was Success ${response.body()}")
                 return Success(response.body()!!)
             }
 
@@ -86,6 +85,19 @@ class RecipeRepository(
 
         }.asLiveData()
 
+    }
+
+    fun getLocallyStoredRecipeFeed() {
+        //okay
+    }
+
+    fun addRecipeToFavorites(recipeId: Int, isLiked: Boolean ) : LiveData<Resource<Int>>{
+        return object : LocalResource<Int>(viewModelScope){
+            override suspend fun actionOnLocalDisk(): LiveData<Int> {
+                return MutableLiveData(recipeDAO.addRecipeToFavorites(recipeId, isLiked))
+            }
+
+        }.asLiveData()
     }
 
 

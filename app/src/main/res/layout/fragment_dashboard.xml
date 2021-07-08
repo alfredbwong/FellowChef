@@ -31,40 +31,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageButton
-                    android:id="@+id/myRecipeButton"
-                    android:layout_width="409dp"
-                    android:layout_height="@dimen/dashboard_item_mobile_img_height"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/myRecipeRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_margin="@dimen/margin_default"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/original_recipe_book"
+                    android:padding="@dimen/padding_default"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/exploreRecipesButton"
-                    android:layout_width="409dp"
-                    android:layout_height="@dimen/dashboard_item_mobile_img_height"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/explore"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/myRecipeButton"
-                    app:layout_constraintTop_toBottomOf="@+id/myRecipeButton" />
-
-                <ImageButton
-                    android:id="@+id/createRecipeButton"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/dashboard_item_mobile_img_height"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/create"
-                    app:layout_constraintEnd_toEndOf="@+id/exploreRecipesButton"
-                    app:layout_constraintStart_toStartOf="@+id/exploreRecipesButton"
-                    app:layout_constraintTop_toBottomOf="@+id/exploreRecipesButton" />
-
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

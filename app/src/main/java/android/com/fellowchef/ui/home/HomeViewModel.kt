@@ -48,7 +48,6 @@ class HomeViewModel @Inject constructor(applicationContext: Context) : BaseViewM
     val listOfRecipes = MediatorLiveData<Resource<List<Recipe>>>()
 
     init{
-//        getRecipes()
         getRecipesData()
     }
 
@@ -62,22 +61,4 @@ class HomeViewModel @Inject constructor(applicationContext: Context) : BaseViewM
         }
     }
 
-
-    private fun getRecipes(){
-//        viewModelScope.launch{
-//            try{
-//                Log.d("HomeViewModel", "Get Recipes.....")
-//
-//                val recipeList = FellowChefRecipeApi.retrofitService.getRecipes()
-//                Log.d("HomeViewModel", "Recipe list retrieved : $recipeList")
-//                _listOfRecipesBreakfast.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.LUNCH))
-//                _listOfRecipesTrending.value = filterRecipesByTag(recipeList, mutableListOf(RecipeType.TRENDING))
-//            }catch(e: Exception){
-//                Log.d("HomeViewModel", "Error: ${e.message}")
-//
-//                isShowToast.value = true
-//                toastErrorMessage.value = "Could not get recipes : ${e.message}"
-//            }
-//        }
-    }
 }

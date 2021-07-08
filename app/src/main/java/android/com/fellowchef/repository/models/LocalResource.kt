@@ -21,11 +21,11 @@ abstract class LocalResource <T> (private val viewModelScope: CoroutineScope){
         launch()
     }
     @WorkerThread
-    abstract suspend fun loadFromDisk(): LiveData<T>
+    abstract suspend fun actionOnLocalDisk(): LiveData<T>
 
     private fun launch() {
         viewModelScope.launch {
-            val diskSource =  withContext(Dispatchers.IO) {loadFromDisk()}
+            val diskSource =  withContext(Dispatchers.IO) {actionOnLocalDisk()}
             result.addSource(diskSource) { data ->
                 setValue(Resource.success(data))
             }

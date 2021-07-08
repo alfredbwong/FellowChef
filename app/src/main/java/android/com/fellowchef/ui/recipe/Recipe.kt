@@ -46,7 +46,10 @@ data class Recipe(
         val numLikes: Int,
         @ColumnInfo(name = "numDislikes")
         @Json(name = "num_dislikes")
-        val numDislikes: Int
+        val numDislikes: Int,
+        @ColumnInfo(name = "is_liked")
+        @Transient
+        val isLiked: Boolean = false
 ) : Parcelable {
 
 

@@ -36,4 +36,7 @@ interface RecipeDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipeFilters(listOfRecipeFilters : List<RecipeCategory>) : List<Long>
+
+    @Query("UPDATE recipe_table SET is_liked=:isLiked WHERE id=:id")
+    suspend fun addRecipeToFavorites(id : Int, isLiked : Boolean) : Int
 }

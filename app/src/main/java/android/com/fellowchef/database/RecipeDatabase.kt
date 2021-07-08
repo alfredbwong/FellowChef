@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 
-@Database(entities = [Recipe::class, RecipeCategory::class], version = 6)
+@Database(entities = [Recipe::class, RecipeCategory::class], version = 8)
 @TypeConverters(RecipeTypeConverter::class, IngredientTypeConverter::class, InstructionTypeConverter::class)
 abstract class RecipeDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDAO
