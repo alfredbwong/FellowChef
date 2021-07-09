@@ -12,20 +12,14 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 
-class SearchViewModel @Inject constructor(applicationContext: Context) : BaseViewModel() {
-    private val repository: RecipeRepository =
-            RecipeRepository(
-                    Retrofit.Builder().baseUrl(BASE_URL)
-                            .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build()))
-                            .build()
-                            .create(FellowChefRecipeService::class.java),
-                    RecipeDatabase.getInstance(applicationContext).recipeDao(),
-                    viewModelScope
-            )
+@HiltViewModel
+class SearchViewModel @Inject constructor( var repository: RecipeRepository) : BaseViewModel() {
+
     val listOfRecipeFilters = MediatorLiveData<Resource<List<RecipeCategory>>>()
 
     init {
@@ -33,7 +27,8 @@ class SearchViewModel @Inject constructor(applicationContext: Context) : BaseVie
     }
 
     private fun getRecipeFilters() {
-        val response = repository.getRecipeFiltersFeed()
+
+        val response = repository.getRecipeFiltersFeed(viewModelScope)
         listOfRecipeFilters.addSource(response){
             newData ->
             Log.i(TAG, "New data for filters ${newData.data}")

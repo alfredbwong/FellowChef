@@ -11,14 +11,17 @@ import android.com.fellowchef.databinding.FragmentHomeBinding
 import android.com.fellowchef.repository.models.Status
 import android.content.Context
 import android.opengl.Visibility
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
-    @Inject
-    lateinit var homeViewModel : HomeViewModel
+    //Hilt says you should retrieve the ViewModel from ViewModelProviderAPI, otherwise would result in multiple instances https://dagger.dev/hilt/view-model.html
+    val homeViewModel : HomeViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -66,11 +69,6 @@ class HomeFragment : Fragment() {
         binding.homeScrollView.visibility = View.INVISIBLE
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        //Use Dagger to inject this fragment
-        (activity as MainActivity).mainRecipeComponent.inject(this)
-    }
 
     companion object {
         const val TAG = "HomeFragment"

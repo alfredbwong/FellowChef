@@ -16,12 +16,10 @@ import java.util.concurrent.TimeUnit
 
 class RecipeRepository(
     private val recipeService: FellowChefRecipeService,
-    private val recipeDAO: RecipeDAO,
-    private val viewModelScope: CoroutineScope
-) {
+    private val recipeDAO: RecipeDAO) {
 
     private val recipeListRateLimit = RateLimiter<String>(1, TimeUnit.MINUTES)
-    fun getRecipesFeed(): LiveData<Resource<List<Recipe>>> {
+    fun getRecipesFeed(viewModelScope: CoroutineScope): LiveData<Resource<List<Recipe>>> {
         //Return using object expression from abstract super class
         return object : NetworkResource<List<Recipe>>(viewModelScope) {
             override suspend fun loadFromDisk(): LiveData<List<Recipe>> {
@@ -55,7 +53,7 @@ class RecipeRepository(
         }.asLiveData()
     }
 
-    fun getRecipeFiltersFeed() : LiveData<Resource<List<RecipeCategory>>> {
+    fun getRecipeFiltersFeed(viewModelScope: CoroutineScope) : LiveData<Resource<List<RecipeCategory>>> {
         return object: NetworkResource<List<RecipeCategory>>(viewModelScope){
             override suspend fun loadFromDisk(): LiveData<List<RecipeCategory>> {
                 val filters = MutableLiveData(recipeDAO.getRecipeFilters())
@@ -78,7 +76,6 @@ class RecipeRepository(
 
             override suspend fun saveToDisk(data: List<RecipeCategory>): Boolean {
                 //Do nothing
-                Log.i(TAG, "saveToDisk ${data}")
                 val ids = recipeDAO.updateFilterData(data)
                 return ids.isNotEmpty()
             }
@@ -91,7 +88,7 @@ class RecipeRepository(
         //okay
     }
 
-    fun addRecipeToFavorites(recipeId: Int, isLiked: Boolean ) : LiveData<Resource<Int>>{
+    fun addRecipeToFavorites(recipeId: Int, isLiked: Boolean ,viewModelScope: CoroutineScope) : LiveData<Resource<Int>>{
         return object : LocalResource<Int>(viewModelScope){
             override suspend fun actionOnLocalDisk(): LiveData<Int> {
                 return MutableLiveData(recipeDAO.addRecipeToFavorites(recipeId, isLiked))

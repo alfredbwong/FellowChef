@@ -1,31 +1,22 @@
 package android.com.fellowchef.ui.search
 
-import android.com.fellowchef.MainActivity
 import android.com.fellowchef.databinding.FragmentSearchBinding
-import android.com.fellowchef.di.MainRecipeActivityScope
 import android.com.fellowchef.ui.component.FilterButton
 import android.com.fellowchef.util.CategoryName
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.google.android.flexbox.FlexDirection
-import com.google.android.flexbox.FlexWrap
-import com.google.android.flexbox.FlexboxLayout
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-@MainRecipeActivityScope
+@AndroidEntryPoint
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
 
-    @Inject
-    lateinit var searchViewModel: SearchViewModel
+    val searchViewModel: SearchViewModel by viewModels()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -74,12 +65,6 @@ class SearchFragment : Fragment() {
         })
         binding.invalidateAll()
         return binding.root
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as MainActivity).mainRecipeComponent.inject(this)
     }
 
     companion object {

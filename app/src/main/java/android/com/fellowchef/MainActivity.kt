@@ -1,7 +1,6 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.ActivityMainBinding
-import android.com.fellowchef.di.MainRecipeComponent
 import android.com.fellowchef.network.ConnectionType
 import android.com.fellowchef.network.NetworkMonitorUtil
 import android.com.fellowchef.ui.home.HomeViewModel
@@ -18,25 +17,18 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var homeViewModel: HomeViewModel
-
-    lateinit var mainRecipeComponent: MainRecipeComponent
 
     private val networkMonitor = NetworkMonitorUtil(this)
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Use Dagger to inject dependencies
-
-        mainRecipeComponent = (applicationContext as FellowChefApplication).appComponent.homeRecipeComponent().create()
-        mainRecipeComponent.inject(this)
-
-
 
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)

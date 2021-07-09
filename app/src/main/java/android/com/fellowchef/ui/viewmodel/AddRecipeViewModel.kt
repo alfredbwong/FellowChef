@@ -1,11 +1,9 @@
 package android.com.fellowchef.ui.viewmodel
 
-import android.com.fellowchef.di.AddRecipeActivityScope
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import javax.inject.Inject
 
-@AddRecipeActivityScope
 class AddRecipeViewModel @Inject constructor(){
     fun updateAddRecipeNameAndType(recipeTitle: String, recipeType: String) {
         _recipeTitle.value = recipeTitle
