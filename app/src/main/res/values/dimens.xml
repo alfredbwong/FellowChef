@@ -14,4 +14,5 @@
     <dimen name="card_view_width">185dp</dimen>
     <dimen name="padding_bottom_component">32dp</dimen>
     <dimen name="button_rounded_radius">16dp</dimen>
+    <dimen name="card_view_width_dashboard">150dp</dimen>
 </resources>
