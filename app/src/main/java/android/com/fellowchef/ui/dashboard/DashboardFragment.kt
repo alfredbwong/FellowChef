@@ -4,6 +4,7 @@ import android.com.fellowchef.ViewRecipeActivity
 import android.com.fellowchef.databinding.FragmentDashboardBinding
 import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.recipe.RecipeAdapter
+import android.com.fellowchef.ui.recipe.RecipeDashboardAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -29,7 +30,8 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val adapter = RecipeAdapter(){
+        val adapter = RecipeDashboardAdapter(){
+
                 recipe ->
             val intent = Intent(context, ViewRecipeActivity::class.java).apply{
                 putExtra("selected_recipe", recipe)
