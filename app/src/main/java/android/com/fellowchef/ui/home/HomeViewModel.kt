@@ -15,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor( var repository: RecipeRepository) : BaseViewModel(){
 
-    private val viewModelJob = Job()
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
@@ -36,7 +35,7 @@ class HomeViewModel @Inject constructor( var repository: RecipeRepository) : Bas
     }
 
     private fun getRecipesData() {
-        viewModelScope
+
             val response = repository.getRecipesFeed(viewModelScope)
             listOfRecipes.addSource(response){
                     newData ->

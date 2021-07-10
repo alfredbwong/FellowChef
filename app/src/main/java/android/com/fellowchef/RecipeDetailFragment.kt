@@ -1,14 +1,21 @@
 package android.com.fellowchef
 
 import android.com.fellowchef.databinding.FragmentRecipeDetailBinding
+import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.recipe.Recipe
+import android.com.fellowchef.ui.viewmodel.RecipeDetailViewModel
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 /**
@@ -16,16 +23,23 @@ import com.google.android.material.tabs.TabLayoutMediator
  * Use the [RecipeDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class RecipeDetailFragment : Fragment() {
     private lateinit var pageAdapter: RecipeDetailPagerAdapter
     private lateinit var viewpager: ViewPager2
     private lateinit var binding: FragmentRecipeDetailBinding
     private lateinit var recipe: Recipe
 
+    private val recipeDetailViewModel : RecipeDetailViewModel by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentRecipeDetailBinding.inflate(inflater)
+
+        recipeDetailViewModel.recipeRepository
         recipe = (activity as ViewRecipeActivity).recipe
+
+
         binding.lifecycleOwner = this
         binding.recipe = recipe
         return binding.root

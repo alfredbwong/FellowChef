@@ -2,6 +2,7 @@ package android.com.fellowchef.repository
 
 import android.com.fellowchef.database.RecipeDAO
 import android.com.fellowchef.database.model.RecipeCategory
+import android.com.fellowchef.database.model.RecipesLiked
 import android.com.fellowchef.repository.models.*
 import android.com.fellowchef.service.FellowChefRecipeApi
 import android.com.fellowchef.service.FellowChefRecipeService
@@ -84,19 +85,17 @@ class RecipeRepository(
 
     }
 
-    fun getLocallyStoredRecipeFeed() {
-        //okay
+    suspend fun addRecipeToLiked(recipeId: Int): Long {
+        return recipeDAO.addToLikedRecipes(recipeId)
     }
 
-    fun addRecipeToFavorites(recipeId: Int, isLiked: Boolean ,viewModelScope: CoroutineScope) : LiveData<Resource<Int>>{
-        return object : LocalResource<Int>(viewModelScope){
-            override suspend fun actionOnLocalDisk(): LiveData<Int> {
-                return MutableLiveData(recipeDAO.addRecipeToFavorites(recipeId, isLiked))
-            }
-
-        }.asLiveData()
+    suspend fun removeRecipeFromLiked(recipeId: Int) {
+        return recipeDAO.removeRecipeFromLiked(recipeId)
     }
 
+    suspend fun getRecipeIdsLiked(): List<Int>{
+        return recipeDAO.getRecipeIdsLiked()
+    }
 
     companion object {
         const val TAG = "RecipeRepository"

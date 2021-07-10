@@ -1,6 +1,7 @@
 package android.com.fellowchef.database
 
 import android.com.fellowchef.database.model.RecipeCategory
+import android.com.fellowchef.database.model.RecipesLiked
 import android.com.fellowchef.ui.recipe.Recipe
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -37,6 +38,13 @@ interface RecipeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipeFilters(listOfRecipeFilters : List<RecipeCategory>) : List<Long>
 
-    @Query("UPDATE recipe_table SET is_liked=:isLiked WHERE id=:id")
-    suspend fun addRecipeToFavorites(id : Int, isLiked : Boolean) : Int
+    @Query("INSERT INTO recipe_liked_table values (null,:recipeId)")
+    suspend fun addToLikedRecipes(recipeId : Int) : Long
+
+    @Query("DELETE FROM recipe_liked_table WHERE (recipe_ids=:recipeId)")
+    suspend fun removeRecipeFromLiked(recipeId : Int)
+
+    @Query("SELECT (recipe_ids) FROM recipe_liked_table")
+    suspend fun getRecipeIdsLiked(): List<Int>
+
 }
