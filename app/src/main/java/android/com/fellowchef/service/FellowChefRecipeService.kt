@@ -2,23 +2,10 @@ package android.com.fellowchef.service
 
 import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.ui.recipe.Recipe
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import javax.inject.Inject
 
-const val BASE_URL = "https://aqueous-scrubland-10484.herokuapp.com"
-
-
-private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-
-
-private val retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
-        .baseUrl(BASE_URL)
-        .build()
 
 interface FellowChefRecipeService {
     @GET("/api/json/v1/recipes")
@@ -28,9 +15,17 @@ interface FellowChefRecipeService {
     fun getRecipeFilters(): Call<List<RecipeCategory>>
 }
 
-object FellowChefRecipeApi {
-    val retrofitService: FellowChefRecipeService by lazy {
-        retrofit.create(FellowChefRecipeService::class.java)
-    }
+interface FellowChefRecipeServiceHelper{
+    fun getRecipes(): Call<List<Recipe>>
+
+    fun getRecipeFilters(): Call<List<RecipeCategory>>
 }
+
+class FellowChefRecipeServiceHelperImpl @Inject constructor(private val apiService: FellowChefRecipeService) : FellowChefRecipeServiceHelper{
+    override fun getRecipes(): Call<List<Recipe>> = apiService.getRecipes()
+
+    override fun getRecipeFilters(): Call<List<RecipeCategory>> = apiService.getRecipeFilters()
+
+}
+
 

@@ -6,6 +6,7 @@ import android.com.fellowchef.ui.recipe.Recipe
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+
 @Dao
 interface RecipeDAO {
     @Query("SELECT * FROM recipe_table")
