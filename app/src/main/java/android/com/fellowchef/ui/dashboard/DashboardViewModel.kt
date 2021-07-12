@@ -16,9 +16,6 @@ class DashboardViewModel @Inject constructor(var repository: RecipeRepository) :
     val likedRecipes = MediatorLiveData<Resource<List<Recipe>>>()
 
 
-    init {
-        getLocallyStoredLikedRecipeFeed()
-    }
 
     fun getLocallyStoredLikedRecipeFeed() {
         viewModelScope.launch {

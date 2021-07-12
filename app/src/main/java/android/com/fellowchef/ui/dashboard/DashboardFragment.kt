@@ -4,6 +4,7 @@ import android.com.fellowchef.databinding.FragmentDashboardBinding
 import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.recipe.RecipeDashboardAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,8 +51,8 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         dashboardViewModel.getLocallyStoredLikedRecipeFeed()
     }
 
