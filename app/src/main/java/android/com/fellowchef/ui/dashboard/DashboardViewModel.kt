@@ -20,7 +20,7 @@ class DashboardViewModel @Inject constructor(var repository: RecipeRepository) :
         getLocallyStoredLikedRecipeFeed()
     }
 
-    private fun getLocallyStoredLikedRecipeFeed() {
+    fun getLocallyStoredLikedRecipeFeed() {
         viewModelScope.launch {
             val response = repository.getRecipesFeed(viewModelScope)
             val responseLikedRecipes = MutableLiveData(repository.getRecipeIdsLiked())

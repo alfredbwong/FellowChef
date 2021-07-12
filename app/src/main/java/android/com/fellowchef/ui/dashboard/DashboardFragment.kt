@@ -32,17 +32,16 @@ class DashboardFragment : Fragment() {
 
         }
         binding.myRecipeRecyclerView.adapter = adapter
-        dashboardViewModel.likedRecipes.observe(viewLifecycleOwner, Observer {
-            listOfRecipes->
-            when(listOfRecipes.status){
-                (Status.SUCCESS)->{
+        dashboardViewModel.likedRecipes.observe(viewLifecycleOwner, Observer { listOfRecipes ->
+            when (listOfRecipes.status) {
+                (Status.SUCCESS) -> {
                     adapter.submitList(listOfRecipes.data)
 
                 }
-                (Status.ERROR)->{
+                (Status.ERROR) -> {
 
                 }
-                (Status.LOADING)->{
+                (Status.LOADING) -> {
 
                 }
             }
@@ -50,7 +49,13 @@ class DashboardFragment : Fragment() {
 
         return binding.root
     }
-companion object{
-    const val TAG = "DashboardFragment"
-}
+
+    override fun onResume() {
+        super.onResume()
+        dashboardViewModel.getLocallyStoredLikedRecipeFeed()
+    }
+
+    companion object {
+        const val TAG = "DashboardFragment"
+    }
 }
