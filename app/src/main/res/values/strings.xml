@@ -40,4 +40,6 @@
     <string name="cuisine_section">Cuisine</string>
     <string name="diet_type_section">Diet Type</string>
     <string name="occasion_type_section">Occasion</string>
+    <string name="default_error">An unknown error has occured. Please try again later.</string>
+    <string name="search_result_label">Results</string>
 </resources>

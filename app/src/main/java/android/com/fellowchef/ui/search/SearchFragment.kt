@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +38,6 @@ class SearchFragment : Fragment() {
                         CategoryName.DIET_TYPE.name.toLowerCase() -> {
                             for (categoryField in category.categoryFields) {
                                 binding.dietFieldsLayout.addView(FilterButton(requireContext(), binding.dietFieldsLayout, categoryField))
-
                             }
                         }
                         CategoryName.MEAL_TYPE.name.toLowerCase() -> {
@@ -55,7 +55,6 @@ class SearchFragment : Fragment() {
                         CategoryName.OCCASION_TYPE.name.toLowerCase() -> {
                             for (categoryField in category.categoryFields) {
                                 binding.occasionFieldsLayout.addView(FilterButton(requireContext(), binding.occasionFieldsLayout, categoryField))
-
                             }
                         }
                     }

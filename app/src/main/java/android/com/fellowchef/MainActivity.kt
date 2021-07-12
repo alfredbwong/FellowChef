@@ -49,16 +49,13 @@ class MainActivity : AppCompatActivity() {
                     true -> {
                         when (type) {
                             ConnectionType.Wifi -> {
-                                Log.i("NETWORK_MONITOR_STATUS", "Wifi Connection")
                             }
                             ConnectionType.Cellular -> {
-                                Log.i("NETWORK_MONITOR_STATUS", "Cellular Connection")
                             }
                             else -> { }
                         }
                     }
                     false -> {
-                        Log.i("NETWORK_MONITOR_STATUS", "No Connection")
                         Snackbar.make(
                                 binding.root,
                                 R.string.network_error_text, Snackbar.LENGTH_INDEFINITE

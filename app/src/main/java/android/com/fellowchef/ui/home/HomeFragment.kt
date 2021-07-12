@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
                     showSuccessComponents()
                 }
                 Status.ERROR->{
-
+                    showErrorComponents()
                 }
                 Status.LOADING->{
                     showLoadingComponents()
@@ -56,14 +56,22 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private fun showErrorComponents() {
+        binding.errorText.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.INVISIBLE
+        binding.homeScrollView.visibility = View.INVISIBLE
+    }
+
     private fun showSuccessComponents() {
         binding.progressBar.visibility = View.INVISIBLE
+        binding.errorText.visibility = View.INVISIBLE
         binding.homeScrollView.visibility = View.VISIBLE
     }
 
     private fun showLoadingComponents() {
         binding.progressBar.visibility = View.VISIBLE
         binding.homeScrollView.visibility = View.INVISIBLE
+        binding.errorText.visibility = View.INVISIBLE
     }
 
 

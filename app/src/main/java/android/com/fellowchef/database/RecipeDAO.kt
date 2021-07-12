@@ -1,9 +1,7 @@
 package android.com.fellowchef.database
 
 import android.com.fellowchef.database.model.RecipeCategory
-import android.com.fellowchef.database.model.RecipesLiked
 import android.com.fellowchef.ui.recipe.Recipe
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 
@@ -47,5 +45,8 @@ interface RecipeDAO {
 
     @Query("SELECT (recipe_ids) FROM recipe_liked_table")
     suspend fun getRecipeIdsLiked(): List<Int>
+
+    @Query("SELECT * FROM recipe_table WHERE tags LIKE :categoryField")
+    suspend fun getRecipesByFilter(categoryField: String): List<Recipe>?
 
 }

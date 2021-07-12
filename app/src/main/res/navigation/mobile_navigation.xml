@@ -19,7 +19,11 @@
         android:id="@+id/navigation_search"
         android:name="android.com.fellowchef.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_search_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -33,10 +37,22 @@
     <fragment
         android:id="@+id/recipeDetailFragment"
         android:name="android.com.fellowchef.RecipeDetailFragment"
-        android:label="RecipeDetailFragment" >
+        android:label="@string/recipe_detail_action_bar_text">
         <argument
             android:name="recipe"
             app:argType="android.com.fellowchef.ui.recipe.Recipe" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="android.com.fellowchef.SearchResultFragment"
+        android:label="@string/search_result_label"
+        tools:layout="@layout/fragment_search_result">
+        <argument
+            android:name="search_category_field"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultFragment_to_recipeDetailFragment"
+            app:destination="@id/recipeDetailFragment" />
     </fragment>
 
 </navigation>

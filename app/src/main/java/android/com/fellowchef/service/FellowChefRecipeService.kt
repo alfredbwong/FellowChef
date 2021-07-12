@@ -4,6 +4,7 @@ import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.ui.recipe.Recipe
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 import javax.inject.Inject
 
 
@@ -13,6 +14,9 @@ interface FellowChefRecipeService {
 
     @GET("/api/json/v1/recipeFilters")
     fun getRecipeFilters(): Call<List<RecipeCategory>>
+
+    @GET("/api/json/v1/recipesByFilter")
+    fun getRecipesByFilter(@Query("filter") filter: String?): Call<List<Recipe>>
 }
 
 interface FellowChefRecipeServiceHelper{

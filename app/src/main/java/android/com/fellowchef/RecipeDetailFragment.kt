@@ -34,7 +34,7 @@ class RecipeDetailFragment : Fragment() {
 
     private val recipeDetailViewModel : RecipeDetailViewModel by viewModels()
 
-    val args : RecipeDetailFragmentArgs by navArgs()
+    private val args : RecipeDetailFragmentArgs by navArgs()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

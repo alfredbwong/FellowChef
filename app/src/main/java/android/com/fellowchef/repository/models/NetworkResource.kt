@@ -9,9 +9,10 @@ import android.com.fellowchef.repository.models.Failure
 import android.com.fellowchef.repository.models.Resource
 import android.com.fellowchef.repository.models.Response
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 
 
-abstract class NetworkResource<T>(private val viewModelScope: CoroutineScope){
+abstract class NetworkResource<T>(private val viewModelScope: CoroutineScope, private val shouldSaveToDisk : Boolean ){
     private val result = MediatorLiveData<Resource<T>>()
     init{
         launch()
@@ -27,7 +28,6 @@ abstract class NetworkResource<T>(private val viewModelScope: CoroutineScope){
     abstract suspend fun saveToDisk(data: T): Boolean
 
     private fun launch() {
-        Log.i("NetworkResourece", "Launched")
         viewModelScope.launch{
             val dataFromDisk = withContext(Dispatchers.IO){
                 loadFromDisk()
@@ -46,18 +46,24 @@ abstract class NetworkResource<T>(private val viewModelScope: CoroutineScope){
                 val fetchTask = async(Dispatchers.IO) { fetchData() }
                 when (val response = fetchTask.await()) {
                     is Success -> {
+                        if (shouldSaveToDisk) {
+                            // save new data to disk and dispatch fresh disk value,
+                            withContext(Dispatchers.IO) {
+                                saveToDisk(response.data)
+                            }
 
-                        // save new data to disk and dispatch fresh disk value,
-                        withContext(Dispatchers.IO) {
-                            saveToDisk(response.data)
+                            val diskResponse = withContext(Dispatchers.IO) { loadFromDisk() }
+
+                            // add latest disk source and send success,
+                            result.addSource(diskResponse) { newData ->
+                                setValue(Resource.success(newData))
+                            }
+                        } else {
+                            result.addSource(MutableLiveData(response.data)) { newData ->
+                                setValue(Resource.success(newData))
+                            }
                         }
 
-                        val diskResponse = withContext(Dispatchers.IO) { loadFromDisk() }
-
-                        // add latest disk source and send success,
-                        result.addSource(diskResponse) { newData ->
-                            setValue(Resource.success(newData))
-                        }
                     }
                     is Failure -> {
                         // re-use the disk data and send the error response,

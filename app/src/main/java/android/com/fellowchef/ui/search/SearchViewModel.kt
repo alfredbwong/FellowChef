@@ -24,7 +24,6 @@ class SearchViewModel @Inject constructor( var repository: RecipeRepository) : B
         val response = repository.getRecipeFiltersFeed(viewModelScope)
         listOfRecipeFilters.addSource(response){
             newData ->
-            Log.i(TAG, "New data for filters ${newData.data}")
             if (listOfRecipeFilters.value != newData){
                 listOfRecipeFilters.value = newData
             }
