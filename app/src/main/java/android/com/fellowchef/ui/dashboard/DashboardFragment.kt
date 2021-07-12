@@ -1,20 +1,16 @@
 package android.com.fellowchef.ui.dashboard
 
-import android.com.fellowchef.ViewRecipeActivity
 import android.com.fellowchef.databinding.FragmentDashboardBinding
 import android.com.fellowchef.repository.models.Status
-import android.com.fellowchef.ui.recipe.RecipeAdapter
 import android.com.fellowchef.ui.recipe.RecipeDashboardAdapter
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,12 +27,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val adapter = RecipeDashboardAdapter(){
+            recipe->
+            findNavController().navigate(DashboardFragmentDirections.actionNavigationDashboardToRecipeDetailFragment(recipe))
 
-                recipe ->
-            val intent = Intent(context, ViewRecipeActivity::class.java).apply{
-                putExtra("selected_recipe", recipe)
-            }
-            requireActivity().startActivity(intent)
         }
         binding.myRecipeRecyclerView.adapter = adapter
         dashboardViewModel.likedRecipes.observe(viewLifecycleOwner, Observer {

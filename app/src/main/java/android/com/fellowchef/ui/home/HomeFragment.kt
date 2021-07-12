@@ -1,19 +1,15 @@
 package android.com.fellowchef.ui.home
 
-import android.com.fellowchef.MainActivity
+import android.com.fellowchef.databinding.FragmentHomeBinding
+import android.com.fellowchef.repository.models.Status
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import android.com.fellowchef.databinding.FragmentHomeBinding
-import android.com.fellowchef.repository.models.Status
-import android.content.Context
-import android.opengl.Visibility
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -33,6 +29,7 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
+
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
             when (recipeList.status) {
                 Status.SUCCESS->{

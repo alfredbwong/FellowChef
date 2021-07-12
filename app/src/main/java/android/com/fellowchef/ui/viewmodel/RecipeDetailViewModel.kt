@@ -1,7 +1,6 @@
 package android.com.fellowchef.ui.viewmodel
 
 import android.com.fellowchef.repository.RecipeRepository
-import android.com.fellowchef.repository.models.Resource
 import android.com.fellowchef.ui.recipe.Recipe
 import android.util.Log
 import androidx.lifecycle.*
@@ -27,12 +26,15 @@ class RecipeDetailViewModel @Inject constructor(var recipeRepository: RecipeRepo
     }
 
     init{
-        getIsRecipeLiked()
+        Log.i(TAG, "Init...")
+        getIdsRecipeLiked()
+
     }
 
-    private fun getIsRecipeLiked() {
+    private fun getIdsRecipeLiked() {
         viewModelScope.launch {
             val likeRecipeIds = recipeRepository.getRecipeIdsLiked()
+            Log.i(TAG, "likeRecipeIds: $likeRecipeIds")
             if (recipeReferenced.value?.let { likeRecipeIds.contains(it.id) } == true){
                 isRecipeLiked.value = true
             }

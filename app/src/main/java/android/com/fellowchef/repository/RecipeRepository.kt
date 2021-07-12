@@ -26,7 +26,6 @@ class RecipeRepository @Inject constructor(
             }
 
             override suspend fun shouldFetch(data: List<Recipe>?): Boolean {
-                Log.i(TAG, "shouldFetch...${data.isNullOrEmpty()}")
                 return true
             }
 
@@ -43,7 +42,6 @@ class RecipeRepository @Inject constructor(
             }
 
             override suspend fun saveToDisk(data: List<Recipe>): Boolean {
-                Log.i(TAG, "saveToDisk...")
 
                 val ids = recipeDAO.updateData(data)
                 return ids.isNotEmpty()
@@ -56,7 +54,6 @@ class RecipeRepository @Inject constructor(
         return object: NetworkResource<List<RecipeCategory>>(viewModelScope){
             override suspend fun loadFromDisk(): LiveData<List<RecipeCategory>> {
                 val filters = MutableLiveData(recipeDAO.getRecipeFilters())
-                Log.i(TAG, "loadFromDisk..filters... ${filters.value}")
                 return filters
             }
 
