@@ -1,8 +1,10 @@
 package android.com.fellowchef.ui.home
 
+import android.com.fellowchef.R
 import android.com.fellowchef.databinding.FragmentHomeBinding
 import android.com.fellowchef.repository.models.Status
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +19,14 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     //Hilt says you should retrieve the ViewModel from ViewModelProviderAPI, otherwise would result in multiple instances https://dagger.dev/hilt/view-model.html
-    val homeViewModel : HomeViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+        enterTransition= inflater.inflateTransition(R.transition.fade)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,

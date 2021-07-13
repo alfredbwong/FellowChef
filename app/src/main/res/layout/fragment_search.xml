@@ -12,20 +12,22 @@
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_default"
             android:fillViewport="true"
             android:padding="@dimen/padding_default"
+            android:visibility="visible"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
             <LinearLayout
+                android:id="@+id/searchLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/margin_bottom_fragment"
-                android:id="@+id/searchLinearLayout">
+                android:paddingBottom="@dimen/margin_bottom_fragment">
 
                 <TextView
                     android:id="@+id/difficultySectionTitle"
@@ -43,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     app:flexDirection="row"
-                    app:flexWrap="wrap"/>
+                    app:flexWrap="wrap" />
 
                 <TextView
                     android:id="@+id/cuisineSectionTitle"
@@ -52,15 +54,17 @@
                     android:layout_margin="@dimen/margin_default"
                     android:text="@string/cuisine_section"
                     android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/cuisineFieldsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
+                    android:visibility="gone"
                     app:flexDirection="row"
-                    app:flexWrap="wrap"/>
+                    app:flexWrap="wrap" />
 
                 <TextView
                     android:id="@+id/mealTypeSectionTitle"
@@ -69,7 +73,7 @@
                     android:layout_margin="@dimen/margin_default"
                     android:text="@string/meal_type_section"
                     android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/mealTypeFieldsLayout"
@@ -77,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
                     app:flexDirection="row"
-                    app:flexWrap="wrap"/>
+                    app:flexWrap="wrap" />
 
                 <TextView
                     android:id="@+id/occasionSectionTitle"
@@ -86,15 +90,17 @@
                     android:layout_margin="@dimen/margin_default"
                     android:text="@string/occasion_type_section"
                     android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/occasionFieldsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
+                    android:visibility="gone"
                     app:flexDirection="row"
-                    app:flexWrap="wrap"/>
+                    app:flexWrap="wrap" />
 
                 <TextView
                     android:id="@+id/dietSectionTitle"
@@ -103,17 +109,45 @@
                     android:layout_margin="@dimen/margin_default"
                     android:text="@string/diet_type_section"
                     android:textSize="24sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
                 <com.google.android.flexbox.FlexboxLayout
                     android:id="@+id/dietFieldsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_default"
+                    android:visibility="gone"
                     app:flexDirection="row"
-                    app:flexWrap="wrap"/>
+                    app:flexWrap="wrap" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBarSearchFrag"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/errorTextSearchFrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_error"
+            android:textAlignment="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
 
     }
     override fun onSupportNavigateUp(): Boolean {

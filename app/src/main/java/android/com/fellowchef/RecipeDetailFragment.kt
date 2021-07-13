@@ -5,6 +5,7 @@ import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.recipe.Recipe
 import android.com.fellowchef.ui.viewmodel.RecipeDetailViewModel
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.*
 import androidx.core.app.ActivityCompat.invalidateOptionsMenu
@@ -39,6 +40,10 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.fade)
+        exitTransition= inflater.inflateTransition(R.transition.fade)
         recipeDetailViewModel.isRecipeLiked.observe(this, Observer {
             isLiked ->
             isRecipeLiked = isLiked
