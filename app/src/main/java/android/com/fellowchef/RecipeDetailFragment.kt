@@ -42,8 +42,9 @@ class RecipeDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.fade)
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
         exitTransition= inflater.inflateTransition(R.transition.fade)
+        postponeEnterTransition()
         recipeDetailViewModel.isRecipeLiked.observe(this, Observer {
             isLiked ->
             isRecipeLiked = isLiked
@@ -82,6 +83,7 @@ class RecipeDetailFragment : Fragment() {
                 tab.text = getString(R.string.instructions)
 
         }.attach()
+        startPostponedEnterTransition()
     }
     // This function can sit in an Helper file, so it can be shared across your project.
     fun updatePagerHeightForChild(view: View, pager: ViewPager2) {
