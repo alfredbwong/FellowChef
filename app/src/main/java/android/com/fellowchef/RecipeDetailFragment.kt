@@ -42,7 +42,7 @@ class RecipeDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+        enterTransition = inflater.inflateTransition(R.transition.fade)
         exitTransition= inflater.inflateTransition(R.transition.fade)
         postponeEnterTransition()
         recipeDetailViewModel.isRecipeLiked.observe(this, Observer {
