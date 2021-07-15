@@ -3,18 +3,19 @@ package android.com.fellowchef.database
 import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.ui.recipe.Recipe
 import androidx.room.*
+import io.reactivex.Observable
+import io.reactivex.Single
 
 
 @Dao
 interface RecipeDAO {
-    @Query("SELECT * FROM recipe_table")
-    suspend fun getRecipes() : List<Recipe>
+
 
     @Query("DELETE FROM recipe_table")
     suspend fun deleteAllRecipes()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRecipes(listOfRecipes : List<Recipe>) : List<Long>
+    fun insertRecipes(listOfRecipes : List<Recipe>) : List<Long>
 
     @Transaction
     suspend fun updateData(data: List<Recipe>) : List<Long> {
@@ -37,16 +38,21 @@ interface RecipeDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipeFilters(listOfRecipeFilters : List<RecipeCategory>) : List<Long>
 
-    @Query("INSERT INTO recipe_liked_table values (null,:recipeId)")
-    suspend fun addToLikedRecipes(recipeId : Int) : Long
 
-    @Query("DELETE FROM recipe_liked_table WHERE (recipe_ids=:recipeId)")
-    suspend fun removeRecipeFromLiked(recipeId : Int)
 
     @Query("SELECT (recipe_ids) FROM recipe_liked_table")
-    suspend fun getRecipeIdsLiked(): List<Int>
+    fun getRecipeIdsLiked(): Single<List<Int>>
 
     @Query("SELECT * FROM recipe_table WHERE tags LIKE :categoryField")
     suspend fun getRecipesByFilter(categoryField: String): List<Recipe>?
+
+    @Query("SELECT * FROM recipe_table")
+    fun getLikedRecipes(): Single<List<Recipe>>
+
+    @Query("DELETE FROM recipe_table WHERE (id=:recipeId)")
+    fun removeRecipeFromLiked(recipeId : Int) : Single<Integer>
+
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    fun addToLikedRecipes(recipe:Recipe) : Single<Long>
 
 }

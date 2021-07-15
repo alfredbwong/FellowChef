@@ -22,14 +22,6 @@ class SearchFragment : Fragment() {
 
     private val searchViewModel: SearchViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val inflater = TransitionInflater.from(requireContext())
-
-        exitTransition = inflater.inflateTransition(R.transition.fade)
-        enterTransition= inflater.inflateTransition(R.transition.fade)
-        postponeEnterTransition()
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -68,7 +60,6 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
-                    startPostponedEnterTransition()
 
                     binding.nestedScrollView.visibility = View.VISIBLE
                     binding.errorTextSearchFrag.visibility = View.GONE

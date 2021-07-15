@@ -24,14 +24,6 @@ class DashboardFragment : Fragment() {
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private lateinit var binding: FragmentDashboardBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.fade)
-        enterTransition= inflater.inflateTransition(R.transition.fade)
-        postponeEnterTransition()
-    }
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -44,25 +36,22 @@ class DashboardFragment : Fragment() {
 
         }
         binding.myRecipeRecyclerView.adapter = adapter
-        dashboardViewModel.likedRecipes.observe(viewLifecycleOwner, Observer { listOfRecipes ->
+        dashboardViewModel.listOfLikedRecipes.observe(viewLifecycleOwner, Observer { listOfRecipes ->
             when (listOfRecipes.status) {
                 (Status.SUCCESS) -> {
                     adapter.submitList(listOfRecipes.data)
-                    startPostponedEnterTransition()
 
                     binding.errorTextDashboardFrag.visibility = View.GONE
                     binding.progressBarDashboardFrag.visibility = View.GONE
                     binding.scrollViewDashboard.visibility = View.VISIBLE
                 }
                 (Status.ERROR) -> {
-                    startPostponedEnterTransition()
 
                     binding.errorTextDashboardFrag.visibility = View.VISIBLE
                     binding.progressBarDashboardFrag.visibility = View.GONE
                     binding.scrollViewDashboard.visibility = View.GONE
                 }
                 (Status.LOADING) -> {
-                    startPostponedEnterTransition()
 
                     binding.errorTextDashboardFrag.visibility = View.GONE
                     binding.progressBarDashboardFrag.visibility = View.VISIBLE

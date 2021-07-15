@@ -7,44 +7,46 @@ import android.com.fellowchef.ui.recipe.Recipe
 import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(var repository: RecipeRepository) : ViewModel() {
 
-    val likedRecipes = MediatorLiveData<Resource<List<Recipe>>>()
+
+    private var _listOfLikedRecipes = MutableLiveData<Resource<List<Recipe>>>()
+    val listOfLikedRecipes: LiveData<Resource<List<Recipe>>>
+        get() = _listOfLikedRecipes
+
+    private val compositeDisposable by lazy { CompositeDisposable() }
 
     init {
         getLocallyStoredLikedRecipeFeed()
     }
 
-    fun getLocallyStoredLikedRecipeFeed() {
-        viewModelScope.launch {
-            val response = repository.getRecipesFeed(viewModelScope)
-            val responseLikedRecipes = MutableLiveData(repository.getRecipeIdsLiked())
+    private fun getLocallyStoredLikedRecipeFeed() {
 
-            likedRecipes.addSource(response) { newData ->
-                if (likedRecipes.value != newData) {
-                    if (newData.data != null) {
-                        likedRecipes.value = Resource.success(newData.data.filter { recipe ->
-                            responseLikedRecipes.value!!.contains(recipe.id)
-                        })
-
-                    }
+        compositeDisposable.add(repository.getListOfLikedRecipes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { _ ->
+                    _listOfLikedRecipes.value = Resource.loading(null)
                 }
-            }
-            likedRecipes.addSource(responseLikedRecipes) {
-                if (likedRecipes.value != null) {
-                    if (likedRecipes.value!!.data != null) {
-                        likedRecipes.value?.data?.filter { recipe ->
-                            responseLikedRecipes.value!!.contains(recipe.id)
-                        }
-                    }
-                }
+                .subscribe({ recipesList ->
+                    _listOfLikedRecipes.value = Resource.success(recipesList)
+                }, { err ->
+                    _listOfLikedRecipes.value = err.message?.let { Resource.error(it, null) }
 
-            }
-        }
+                })
+        )
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 
     companion object {

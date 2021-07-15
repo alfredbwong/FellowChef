@@ -41,10 +41,6 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val inflater = TransitionInflater.from(requireContext())
-        enterTransition = inflater.inflateTransition(R.transition.fade)
-        exitTransition= inflater.inflateTransition(R.transition.fade)
-        postponeEnterTransition()
         recipeDetailViewModel.isRecipeLiked.observe(this, Observer {
             isLiked ->
             isRecipeLiked = isLiked
@@ -56,7 +52,6 @@ class RecipeDetailFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentRecipeDetailBinding.inflate(inflater)
-        recipeDetailViewModel.recipeRepository
         recipe = args.recipe
         recipeDetailViewModel.updateReferencedRecipe(recipe)
         binding.lifecycleOwner = this
@@ -83,7 +78,6 @@ class RecipeDetailFragment : Fragment() {
                 tab.text = getString(R.string.instructions)
 
         }.attach()
-        startPostponedEnterTransition()
     }
     // This function can sit in an Helper file, so it can be shared across your project.
     fun updatePagerHeightForChild(view: View, pager: ViewPager2) {
@@ -136,7 +130,12 @@ class RecipeDetailFragment : Fragment() {
         return when(item.itemId){
             R.id.likeButton->{
                 recipeDetailViewModel.isRecipeLiked.value = !isRecipeLiked
-                recipeDetailViewModel.addOrRemoveLikedRecipe(recipe.id, isRecipeLiked)
+                if (isRecipeLiked){
+                    recipeDetailViewModel.addLikedRecipe(recipe)
+                } else {
+                    recipeDetailViewModel.removeRecipeFromLiked(recipe.id)
+
+                }
                 requireActivity().invalidateOptionsMenu()
 
                 true
