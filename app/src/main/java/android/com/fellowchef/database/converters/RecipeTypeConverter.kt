@@ -18,7 +18,6 @@ class RecipeTypeConverter {
         val itemType = object: TypeToken<List<String>>(){}.type
         return Gson().fromJson(value, itemType)
     }
-    @RequiresApi(Build.VERSION_CODES.N)
     @TypeConverter
     fun fromListOfString (value : List<String>) :  String{
         return Gson().toJson(value)
