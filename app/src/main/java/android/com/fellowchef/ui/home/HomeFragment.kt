@@ -56,20 +56,20 @@ class HomeFragment : Fragment() {
     private fun showErrorComponents(message: String?) {
         binding.errorText.text = message
         binding.errorText.visibility = View.VISIBLE
-        binding.progressBar.visibility = View.INVISIBLE
-        binding.homeScrollView.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.GONE
+        binding.homeScrollView.visibility = View.GONE
     }
 
     private fun showSuccessComponents() {
-        binding.progressBar.visibility = View.INVISIBLE
-        binding.errorText.visibility = View.INVISIBLE
+        binding.progressBar.visibility = View.GONE
+        binding.errorText.visibility = View.GONE
         binding.homeScrollView.visibility = View.VISIBLE
     }
 
     private fun showLoadingComponents() {
         binding.progressBar.visibility = View.VISIBLE
-        binding.homeScrollView.visibility = View.INVISIBLE
-        binding.errorText.visibility = View.INVISIBLE
+        binding.homeScrollView.visibility = View.GONE
+        binding.errorText.visibility = View.GONE
     }
 
 
