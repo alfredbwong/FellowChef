@@ -42,8 +42,8 @@ class DashboardFragment : Fragment() {
                     adapter.submitList(listOfRecipes.data)
 
                     binding.errorTextDashboardFrag.visibility = View.GONE
-                    binding.progressBarDashboardFrag.visibility = View.VISIBLE
-                    binding.scrollViewDashboard.visibility = View.GONE
+                    binding.progressBarDashboardFrag.visibility = View.GONE
+                    binding.scrollViewDashboard.visibility = View.VISIBLE
                 }
                 (Status.ERROR) -> {
 
