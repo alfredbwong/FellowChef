@@ -2,7 +2,6 @@ package android.com.fellowchef.database
 
 import android.com.fellowchef.database.converters.IngredientTypeConverter
 import android.com.fellowchef.database.converters.InstructionTypeConverter
-import android.com.fellowchef.database.converters.RecipeIdListTypeConverter
 import android.com.fellowchef.database.converters.RecipeTypeConverter
 import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.database.model.RecipesLiked
@@ -14,8 +13,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 
-@Database(entities = [Recipe::class, RecipeCategory::class, RecipesLiked::class], version = 2)
-@TypeConverters(RecipeTypeConverter::class, IngredientTypeConverter::class, InstructionTypeConverter::class, RecipeIdListTypeConverter::class)
+@Database(entities = [Recipe::class, RecipeCategory::class, RecipesLiked::class], version = 1)
+@TypeConverters(RecipeTypeConverter::class, IngredientTypeConverter::class, InstructionTypeConverter::class)
 abstract class RecipeDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDAO
 

@@ -1,36 +1,21 @@
 package android.com.fellowchef.database.converters
 
+import android.com.fellowchef.models.Ingredient
 import android.com.fellowchef.models.Instruction
 import android.util.Log
 import androidx.room.TypeConverter
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class InstructionTypeConverter {
 
     @TypeConverter
     fun toListOfInstructionsFromString(dataString: String) : List<Instruction>{
-        val instructionRaw = dataString.split("!!!")
-        val instructionListResult = mutableListOf<Instruction>()
-        instructionRaw.forEach {
-            instructionStr ->
-            if (instructionStr.isNotEmpty()){
-                val instructionStrProperties = instructionStr.split("//")
-                val instruction = Instruction(instructionStrProperties[0].toInt(), instructionStrProperties[1])
-                instructionListResult.add(instruction)
-            }
-        }
-
-        return instructionListResult
+        val itemType = object: TypeToken<List<Instruction>>(){}.type
+        return Gson().fromJson(dataString, itemType)
     }
     @TypeConverter
     fun toStringFromListOfInstructions(listInstructions: List<Instruction>) : String{
-        val stringResult = StringBuilder()
-        listInstructions.forEach {
-            instruction ->
-            stringResult.append(instruction.step)
-                    .append("//")
-                    .append(instruction.text)
-                    .append("!!!")
-        }
-        return stringResult.toString()
+        return Gson().toJson(listInstructions)
     }
 }
