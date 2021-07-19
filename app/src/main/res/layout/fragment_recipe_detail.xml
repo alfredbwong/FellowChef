@@ -19,10 +19,9 @@
             android:id="@+id/linearLayoutRecipeDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:focusableInTouchMode="true"
             android:focusable="true"
-            >
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
 
             <TextView
@@ -61,50 +60,78 @@
 
                 <TextView
                     android:id="@+id/servingSizeText"
+                    style="@style/RecipeDetailSection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/default_layout_component_spacing_small"
                     android:layout_marginEnd="@dimen/default_layout_component_spacing_small"
-                    android:text="@string/serving_size_text"
-                    style="@style/RecipeDetailSection"/>
+                    android:text="@string/serving_size_text" />
 
                 <TextView
                     android:id="@+id/servingSizeValue"
+                    style="@style/RecipeDetailSection"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/default_layout_component_spacing_small"
-                    android:text="@{Integer.toString(recipe.numServings)}"
-                    style="@style/RecipeDetailSection"/>
+                    android:text="@{Integer.toString(recipe.numServings)}" />
 
             </LinearLayout>
 
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tablayout"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/ingredientsTab"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/ingredientsTitle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/ingredients" />
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:text="@string/ingredients"
+                    android:textColor="@color/china_pink"
+                    android:textSize="24sp" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/instructionsTab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/instructions" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ingredientsListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/ingredientsTitle"
+                    android:layout_margin="@dimen/margin_default"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
 
-            </com.google.android.material.tabs.TabLayout>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:isScrollContainer="false"
-                android:nestedScrollingEnabled="true"
-                android:paddingBottom="@dimen/padding_bottom_component" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/instructionsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:text="@string/ingredients"
+                    android:textColor="@color/china_pink"
+                    android:textSize="24sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/instructionsListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/instructionsTitle"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:paddingBottom="@dimen/margin_bottom_fragment"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            </RelativeLayout>
 
 
         </LinearLayout>
