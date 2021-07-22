@@ -63,6 +63,12 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        dashboardViewModel.getLocallyStoredLikedRecipeFeed()
+
+    }
+
     companion object {
         const val TAG = "DashboardFragment"
     }

@@ -22,7 +22,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 @BindingAdapter("ingredientAmountAndSize")
 fun bindIngredientAmountAndSize(textView: TextView, ingredient : Ingredient){
-    if (ingredient.amount < 0){
+    if (ingredient.amount <= 0){
         textView.visibility = View.GONE
     } else {
         textView.text = "${ingredient.amount} ${ingredient.size}"

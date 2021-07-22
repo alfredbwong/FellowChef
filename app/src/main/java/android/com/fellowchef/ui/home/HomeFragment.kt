@@ -34,7 +34,24 @@ class HomeFragment : Fragment() {
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
             when (recipeList.status) {
                 Status.SUCCESS->{
-                    recipeList.data?.let { binding.trendingSection.refreshList(it) }
+                    recipeList.data?.filter {
+                        recipe ->
+                        recipe.recipeType.contains("TRENDING")
+                    }.let {
+                        if (it != null) {
+                            binding.trendingSection.refreshList(it)
+                        }
+
+                    }
+                    recipeList.data?.filter {
+                            recipe ->
+                        recipe.recipeType.contains("POPULAR")
+                    }.let {
+                        if (it != null) {
+                            binding.popularThisWeekSection.refreshList(it)
+                        }
+
+                    }
                     showSuccessComponents()
                 }
                 Status.ERROR->{

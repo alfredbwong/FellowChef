@@ -23,11 +23,9 @@ class DashboardViewModel @Inject constructor(var repository: RecipeRepository) :
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 
-    init {
-        getLocallyStoredLikedRecipeFeed()
-    }
 
-    private fun getLocallyStoredLikedRecipeFeed() {
+
+    fun getLocallyStoredLikedRecipeFeed() {
 
         compositeDisposable.add(repository.getListOfLikedRecipes()
                 .subscribeOn(Schedulers.io())
