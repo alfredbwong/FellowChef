@@ -29,6 +29,9 @@ class SearchFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        searchViewModel.getRecipeFilters()
+
         searchViewModel.listOfRecipeFilters.observe(viewLifecycleOwner, Observer { recipeCategoryResource ->
             when(recipeCategoryResource.status){
                 Status.SUCCESS->{

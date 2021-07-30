@@ -50,7 +50,7 @@ interface RecipeDAO {
     fun getLikedRecipes(): Single<List<Recipe>>
 
     @Query("DELETE FROM recipe_table WHERE (id=:recipeId)")
-    fun removeRecipeFromLiked(recipeId : Int) : Single<Integer>
+    fun removeRecipeFromLiked(recipeId : Int) : Single<Int>
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun addToLikedRecipes(recipe:Recipe) : Single<Long>

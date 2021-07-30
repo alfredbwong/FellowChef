@@ -1,6 +1,7 @@
 package android.com.fellowchef.ui.search
 
 import android.com.fellowchef.database.model.RecipeCategory
+import android.com.fellowchef.repository.BasicRecipeRepository
 import android.com.fellowchef.repository.RecipeRepository
 import android.com.fellowchef.repository.models.Resource
 import android.com.fellowchef.repository.models.Success
@@ -15,17 +16,13 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(var repository: RecipeRepository) : BaseViewModel() {
+class SearchViewModel @Inject constructor(var repository: BasicRecipeRepository) : BaseViewModel() {
 
     val listOfRecipeFilters = MediatorLiveData<Resource<List<RecipeCategory>>>()
 
-    val compositeDisposable by lazy { CompositeDisposable() }
+    private val compositeDisposable by lazy { CompositeDisposable() }
 
-    init {
-        getRecipeFilters()
-    }
-
-    private fun getRecipeFilters() {
+    fun getRecipeFilters() {
         compositeDisposable.add(repository.getRecipeFiltersFeed()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

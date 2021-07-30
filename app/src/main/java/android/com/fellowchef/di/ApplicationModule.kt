@@ -2,13 +2,19 @@ package android.com.fellowchef.di
 
 import android.com.fellowchef.database.RecipeDAO
 import android.com.fellowchef.database.RecipeDatabase
+import android.com.fellowchef.repository.BasicRecipeRepository
+import android.com.fellowchef.repository.FakeRecipeRepositoryProxy
+import android.com.fellowchef.repository.RecipeRepository
 import android.com.fellowchef.service.FellowChefRecipeService
 import android.com.fellowchef.service.FellowChefRecipeServiceHelper
 import android.com.fellowchef.service.FellowChefRecipeServiceHelperImpl
+import android.com.fellowchef.ui.recipe.Recipe
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import dagger.Binds
+import dagger.Component
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,4 +63,13 @@ class ApplicationModule {
     @Singleton
     fun provideRecipeDAO(@ApplicationContext applicationContext: Context): RecipeDAO =
         RecipeDatabase.getInstance(applicationContext).recipeDao()
+
+    @Module
+    @InstallIn(SingletonComponent::class)
+    interface Declarations{
+        @Binds
+        fun bindRecipeRepository(repository: RecipeRepository) : BasicRecipeRepository
+    }
+
+
 }

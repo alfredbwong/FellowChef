@@ -3,6 +3,7 @@ package android.com.fellowchef.ui.home
 import android.com.fellowchef.databinding.FragmentHomeBinding
 import android.com.fellowchef.repository.models.Status
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,12 +27,13 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-
+        homeViewModel.getRecipesData()
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             binding.textHome.text = it
         })
 
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
+            Log.i(TAG, "Changed list ofRecipes $recipeList")
             when (recipeList.status) {
                 Status.SUCCESS->{
                     recipeList.data?.filter {
@@ -57,9 +59,6 @@ class HomeFragment : Fragment() {
                 Status.ERROR->{
                     showErrorComponents(recipeList.message)
                 }
-                Status.LOADING->{
-                    showLoadingComponents()
-                }
             }
         })
         homeViewModel.isShowToast.observe(viewLifecycleOwner, Observer { isShowToast ->
@@ -67,6 +66,7 @@ class HomeFragment : Fragment() {
                 homeViewModel.clearToast()
             }
         })
+        showLoadingComponents()
         return binding.root
     }
 

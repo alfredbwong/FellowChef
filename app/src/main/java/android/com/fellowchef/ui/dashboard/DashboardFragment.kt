@@ -51,16 +51,21 @@ class DashboardFragment : Fragment() {
                     binding.progressBarDashboardFrag.visibility = View.GONE
                     binding.scrollViewDashboard.visibility = View.GONE
                 }
-                (Status.LOADING) -> {
-
-                    binding.errorTextDashboardFrag.visibility = View.GONE
-                    binding.progressBarDashboardFrag.visibility = View.VISIBLE
+                else ->{
+                    binding.errorTextDashboardFrag.visibility = View.VISIBLE
+                    binding.progressBarDashboardFrag.visibility = View.GONE
                     binding.scrollViewDashboard.visibility = View.GONE
                 }
             }
         })
-
+        showLoadingComponent()
         return binding.root
+    }
+
+    private fun showLoadingComponent() {
+        binding.errorTextDashboardFrag.visibility = View.GONE
+        binding.progressBarDashboardFrag.visibility = View.VISIBLE
+        binding.scrollViewDashboard.visibility = View.GONE
     }
 
     override fun onStart() {

@@ -1,6 +1,7 @@
 package android.com.fellowchef.ui.dashboard
 
 import android.com.fellowchef.database.model.RecipesLiked
+import android.com.fellowchef.repository.BasicRecipeRepository
 import android.com.fellowchef.repository.RecipeRepository
 import android.com.fellowchef.repository.models.Resource
 import android.com.fellowchef.ui.recipe.Recipe
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DashboardViewModel @Inject constructor(var repository: RecipeRepository) : ViewModel() {
+class DashboardViewModel @Inject constructor(var repository: BasicRecipeRepository) : ViewModel() {
 
 
     private var _listOfLikedRecipes = MutableLiveData<Resource<List<Recipe>>>()
@@ -30,9 +31,6 @@ class DashboardViewModel @Inject constructor(var repository: RecipeRepository) :
         compositeDisposable.add(repository.getListOfLikedRecipes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { _ ->
-                    _listOfLikedRecipes.value = Resource.loading(null)
-                }
                 .subscribe({ recipesList ->
                     _listOfLikedRecipes.value = Resource.success(recipesList)
                 }, { err ->

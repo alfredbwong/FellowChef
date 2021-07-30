@@ -1,5 +1,6 @@
 package android.com.fellowchef.ui.home
 
+import android.com.fellowchef.repository.BasicRecipeRepository
 import android.com.fellowchef.repository.RecipeRepository
 import android.com.fellowchef.repository.models.Failure
 import android.com.fellowchef.repository.models.Resource
@@ -14,6 +15,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,7 +23,7 @@ import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(var repository: RecipeRepository) : BaseViewModel() {
+class HomeViewModel @Inject constructor(var repository: BasicRecipeRepository) : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -39,17 +41,10 @@ class HomeViewModel @Inject constructor(var repository: RecipeRepository) : Base
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 
-    init {
-        getRecipesData()
-    }
-
-    private fun getRecipesData() {
+    open fun getRecipesData()  {
         compositeDisposable.add(repository.getRecipesFeedFromNetwork()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { _ ->
-                _listOfRecipes.value = Resource.loading(null)
-            }
             .subscribe({ recipes ->
                 if (recipes != null && recipes.isNotEmpty()) {
                     _listOfRecipes.value = Resource.success(recipes)
@@ -70,4 +65,5 @@ class HomeViewModel @Inject constructor(var repository: RecipeRepository) : Base
     companion object {
         const val TAG = "HomeViewModel"
     }
+
 }

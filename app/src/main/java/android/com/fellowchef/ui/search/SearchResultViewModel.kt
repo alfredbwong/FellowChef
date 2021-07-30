@@ -26,7 +26,7 @@ class SearchResultViewModel @Inject constructor(var repository: RecipeRepository
 
     fun getRecipeSearchResult() {
         Log.d(TAG, "recipeFilterArg.value ${recipeFilterArg.value}")
-        compositeDisposable.add(repository.getListOfRecipesFiltered(recipeFilterArg.value!!.toUpperCase()!!)
+        compositeDisposable.add(repository.getListOfRecipesFiltered(recipeFilterArg.value!!.toUpperCase())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { _ ->
@@ -34,7 +34,7 @@ class SearchResultViewModel @Inject constructor(var repository: RecipeRepository
             }
             .subscribe({ listRecipes ->
                 _listOfRecipeSearchResult.value = Resource.success(listRecipes)
-            }, { err ->
+            }, {
                 _listOfRecipeSearchResult.value =Resource.error( "error getting recipes by filter", null)
             })
         )

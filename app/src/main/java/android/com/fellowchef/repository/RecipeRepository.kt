@@ -20,33 +20,33 @@ import javax.inject.Inject
 class RecipeRepository @Inject constructor(
         private val apiService: FellowChefRecipeService,
         private val recipeDAO: RecipeDAO
-) {
+) : BasicRecipeRepository{
 
 
 
-    fun getRecipesFeedFromNetwork(): Single<List<Recipe>> {
+    override fun getRecipesFeedFromNetwork(): Single<List<Recipe>> {
         return apiService.getRecipes()
     }
 
-    fun getListOfLikedRecipes(): Single<List<Recipe>> {
+    override fun getListOfLikedRecipes(): Single<List<Recipe>> {
         return recipeDAO.getLikedRecipes()
     }
 
-    fun removeRecipeFromLiked(recipeId : Int): Single<Integer> {
+    override fun removeRecipeFromLiked(recipeId : Int): Single<Int> {
         return recipeDAO.removeRecipeFromLiked(recipeId)
 
     }
 
-    fun addRecipeToLiked(recipe: Recipe): Single<Long> {
+    override fun addRecipeToLiked(recipe: Recipe): Single<Long> {
         return recipeDAO.addToLikedRecipes(recipe)
 
     }
 
-    fun getRecipeFiltersFeed(): Single<List<RecipeCategory>> {
+    override fun getRecipeFiltersFeed(): Single<List<RecipeCategory>> {
         return apiService.getRecipeFilters()
     }
 
-    fun getListOfRecipesFiltered(filter: String): Single<List<Recipe>> {
+    override fun getListOfRecipesFiltered(filter: String): Single<List<Recipe>> {
         return apiService.getRecipesByFilter(filter)
     }
 
