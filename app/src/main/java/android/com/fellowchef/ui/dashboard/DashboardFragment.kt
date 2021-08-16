@@ -1,19 +1,15 @@
 package android.com.fellowchef.ui.dashboard
 
-import android.com.fellowchef.R
 import android.com.fellowchef.databinding.FragmentDashboardBinding
 import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.recipe.RecipeDashboardAdapter
 import android.os.Bundle
-import android.transition.TransitionInflater
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 
