@@ -1,13 +1,11 @@
 package android.com.fellowchef.ui.search
 
-import android.com.fellowchef.R
 import android.com.fellowchef.database.model.RecipeCategory
 import android.com.fellowchef.databinding.FragmentSearchBinding
 import android.com.fellowchef.repository.models.Status
 import android.com.fellowchef.ui.component.FilterButton
 import android.com.fellowchef.util.CategoryName
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

@@ -33,7 +33,6 @@ class HomeFragment : Fragment() {
         })
 
         homeViewModel.listOfRecipes.observe(viewLifecycleOwner, Observer { recipeList ->
-            Log.i(TAG, "Changed list ofRecipes $recipeList")
             when (recipeList.status) {
                 Status.SUCCESS->{
                     recipeList.data?.filter {

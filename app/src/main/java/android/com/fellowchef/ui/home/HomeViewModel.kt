@@ -41,9 +41,10 @@ class HomeViewModel @Inject constructor(var repository: BasicRecipeRepository) :
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 
-    open fun getRecipesData()  {
+    fun getRecipesData()  {
         compositeDisposable.add(repository.getRecipesFeedFromNetwork()
             .subscribeOn(Schedulers.io())
+            .retry(2)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ recipes ->
                 if (recipes != null && recipes.isNotEmpty()) {
