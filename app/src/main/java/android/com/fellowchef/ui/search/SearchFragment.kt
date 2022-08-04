@@ -44,13 +44,17 @@ class SearchFragment : Fragment() {
 //                                    addButtonsForDietRecipes(category)
                                 }
                                 CategoryName.MEAL_TYPE.name.toLowerCase() -> {
-                                    for (categoryField in category.categoryFields) {
-                                        binding.mealTypeFieldsLayout.addView(FilterButton(requireContext(), binding.mealTypeFieldsLayout, categoryField))
+                                        binding.mealTypeFieldsLayout.removeAllViews()
+                                        category.categoryFields.map{
+                                                categoryField->
+                                            binding.mealTypeFieldsLayout.addView(FilterButton(requireContext(), binding.mealTypeFieldsLayout, categoryField))
+                                        }
 
-                                    }
                                 }
                                 CategoryName.DIFFICULTY.name.toLowerCase() -> {
-                                    for (categoryField in category.categoryFields) {
+                                    binding.difficultyFieldsLayout.removeAllViews()
+                                    category.categoryFields.map{
+                                        categoryField ->
                                         binding.difficultyFieldsLayout.addView(FilterButton(requireContext(), binding.difficultyFieldsLayout, categoryField))
 
                                     }
